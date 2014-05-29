@@ -1,0 +1,25 @@
+#search-form{
+	position: relative;
+	margin: 0 auto;
+	/*width: 580px;*/
+}
+
+.tips-dialog{
+	width: 490px;
+	position: absolute;
+	left: 1px;
+	top: 33px;
+	border: 1px solid #ccc;
+	margin-top: 2px;
+	line-height: 25px;
+	background-color: #fff;
+	display: none;
+}
+
+.tips-dialog li{
+	list-style: none;
+}
+
+.tips-dialog li:hover{
+	background-color: #ebebeb;
+}

@@ -1,0 +1,101 @@
+<include file="Public:header" />
+
+<script type="text/javascript">
+
+window.onload = function(){
+	$('.lazy').lazyload({"threshold":0});
+}
+$(document).ready(function(){
+	$('#search-text').keyup(function(){
+		var key = $(this).val();
+		if (key == null || key == "") {
+			$("#tips-ul").hide();
+			return ;
+		};
+		$("#tips-ul").slideDown();
+		console.log(key);
+		ajaxGet(key);
+	});
+
+	$('#search-city').click(function(e){
+		$("#search-form").submit();
+	});
+
+	$(document).keydown(function(e){
+		if (e.keyCode == 13) {
+			$("#search-form").submit();
+		};
+	});
+});
+
+function ajaxGet(key){
+	$.ajax({
+		async:false,
+		method:'get',
+		data:{'key': key},
+		url:'{:U("Index/suggest")}',
+		dataType:'json',
+		success:function(result){
+			console.log(result);
+			var data = result.data;
+			// console.log(result.info);
+			if (data.length > 0) {
+				var elemStr = replaceTpl("<li>{word}</li>",data);
+				$("#tips-ul").empty();
+				$("#tips-ul").append(elemStr);
+				bindUlEvent();
+			}
+		}
+	});
+}
+
+
+function bindUlEvent(){
+	$("#tips-ul li").unbind("click");
+	$("#tips-ul li").bind("click", function(e){
+		var key = $(this).text();
+		$("#search-text").val(key);
+		$("#search-form").submit();
+	});
+	
+}
+</script>
+
+<div class="wrapper">
+	<div class="container">
+		<div class="topSearch">
+			<form id="search-form" action="{:U('Index/search')}" method="get">
+			<input type="text" id="search-text" name="key"  laceholder="示例" autocomplete="off" class="inputText"/>
+			<a href="#" id="search-city" class="btn">搜景点</a>
+			<ul id="tips-ul" class="tips-dialog">
+
+			</ul>
+			<div class="clear"> </div>
+		</form>
+		</div>
+
+		<div id="place">
+			<h2>搜索结果</h2>
+			<volist name="resultArr" id="row">
+			<div class="unit">
+				<a href="#"><div class="title">{$row.ambiguity_sname}</div>
+					<img data-original="{:U('Index/readImg')}?url={$row.full_url}" alt="" class="lazy" src="__IMG__/grey.jpg" width="207" height="134">
+					<div class="detail">
+						<p>{$row.more_desc}</p>
+					</div>
+					<div class="clear"> </div></a>
+			</div>
+			</volist>
+
+		</div>
+	</div>
+</div>
+<volist name="data" id="row">
+	<p>{$row.sid}--{$row.ambiguitySname}</p>
+</volist>
+
+<volist name="arr" id="row">
+	<p>{$row.sid}--{$row.ambiguity_sname}--{$row.view_count}</p>
+</volist>
+
+<include file="Public:footer" />
