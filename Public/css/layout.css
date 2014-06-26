@@ -133,11 +133,37 @@ header h1{
 .routediv{
     position: relative;
 }
-.routediv img{
+.routediv .pic{
     float: left;
 }
 .routediv .detail{
     float: left;
     margin-left: 20px;
     width: 500px;
+}
+.map{
+    width: 960px;
+    height: 700px;
+    position: absolute;
+    top: -130px;
+    z-index: 999;
+    display: none;
+}
+.j-delete{
+    float: right;
+    cursor: pointer;
+}
+.map p{
+    width: 100%;
+    background: #fff;
+    height: 41px;
+}
+.block{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: none;
+    z-index: 200;
+    background: rgba(0,0,0,0.8);
 }

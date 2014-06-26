@@ -11,6 +11,7 @@
 </head>
 <body>
      <div class="wrapper">
+        <div class='block j-block'></div>
          <div class="container">
              <div class="topSearch">
                  <input type="text" class="inputText"/><a href="#" class="btn">搜景点</a><a href="#" class="btn">搜路线</a>
@@ -25,9 +26,9 @@
                  <h2>搜索结果</h2>
                  <p class='sort'><span>排序：</span><a href="#">热度</a><a href="#">价格</a><a href="#">距离</a></p>
                  <volist name="routeList" id="row">
-                 <div class="r-unit clearfix j-unit">   
+                 <div class="r-unit clearfix j-unit">
                      <div class="title">{$row.sname}</div>
-                     <img src="__IMG__/1.jpg" alt="">
+                     <img src="__IMG__/1.jpg" alt="" class='pic'>
                      <div class="detail">
                      <p>
 	                     <a href="#" class='route  j-route'>
@@ -37,13 +38,15 @@
                      <p>天数：<span>{$row.visit_day}天</span></p>
                      <p>价格：<span>{$row.sum_price}元</span></p>
                      <p>距离：<span><php>echo $row['sum_price']/1000;</php>km</span></p>
-
                      </div>
                     
                  <div class="clear"> </div>
                  </div>
                  </volist>
-                 <div id="j-allmap" style='display:none;width: 960px;height: 700px;overflow: hidden;position:absolute;z-index:999;top:0;'></div>
+                 <div class='map j-map'>
+                    <p><img src="__IMG__/delete_on.png" class='j-delete'></p>
+                    <div id="j-allmap" style='width: 960px;height: 700px;overflow: hidden;'></div>
+                 </div>
              </div>
          </div>
      </div>

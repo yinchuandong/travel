@@ -74,11 +74,16 @@ function getMap(){
 }
 $(document).ready(function(){
     $('.j-unit').each(function(i,cont){
-        $(cont).find('.j-route').click(function(event) {
-            console.log(3);
-            $('#j-allmap').show();
+        $(cont).find('.j-route').on('click',function(event) {
+            $('.j-map').show();
+            $('.j-block').show();
             getMap();
         });
+
+    });
+    $('.j-delete').on('click',function(event) {
+        $('.j-map').hide();
+        $('.j-block').hide();
     });
 });
 
