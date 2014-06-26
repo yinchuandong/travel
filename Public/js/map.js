@@ -1,4 +1,3 @@
-//http://127.0.0.1/travel/index.php/Index/readImg?url=http://t11.baidu.com/it/u=2995318513,3475887736&fm=22
 
 // 百度地图API功能
 var oMap = {
