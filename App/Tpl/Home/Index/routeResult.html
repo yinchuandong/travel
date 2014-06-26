@@ -22,17 +22,23 @@
              <div class="place">
                  <h2>搜索结果</h2>
                  <p class='sort'><span>排序：</span><a href="#">热度</a><a href="#">价格</a><a href="#">距离</a></p>
+                 <volist name="routeList" id="row">
                  <div class="unit">   
-                     <div class="title">啊啊啊啊啊啊啊</div>
+                     <div class="title">{$row.sname}</div>
                      <img src="__IMG__/1.jpg" alt="">
                      <div class="detail">
-                     <p><a href="#" class='route'><span>深圳世界之窗</span>----><span>仙湖植物园</span>----><span>东部华侨城</span>----><span>小梅沙</span><span>深圳世界之窗</span>----><span>仙湖植物园</span>----><span>东部华侨城</span>----><span>小梅沙</span></a></p>
-                     <p>天数：<span>3天</span></p>
-                     <p>价格：<span>300元</span></p>
-                     <p>距离：<span>300km</span></p>
+                     <p>
+	                     <a href="#" class='route'>
+	                     <span>{$row.route_desc}</span>
+	                     </a>
+                     </p>
+                     <p>天数：<span>{$row.visit_day}天</span></p>
+                     <p>价格：<span>{$row.sum_price}元</span></p>
+                     <p>距离：<span><php>echo $row['sum_price']/1000;</php>km</span></p>
                      </div>
                      <div class="clear"> </div>
                  </div>
+                 </volist>
              </div>
          </div>
      </div>
