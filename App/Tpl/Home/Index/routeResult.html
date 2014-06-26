@@ -32,6 +32,12 @@
                      <p>
 	                     <a href="#" class='route  j-route'>
 	                     <span>{$row.route_desc}</span>
+	                     <php>
+	                     	$desc = $row['route_desc'];
+	                     	$arr = split('[,|]', $desc);
+	                     	$arr = array_unique($arr);
+	                     	var_dump($arr);
+	                     </php>
 	                     </a>
                      </p>
                      <p>天数：<span>{$row.visit_day}天</span></p>
