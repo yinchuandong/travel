@@ -1,4 +1,16 @@
-<include file="Public:header" />
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>搜索引擎</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+        <meta name="viewport"  content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+        <link rel="stylesheet" href="__CSS__/reset.css" />
+        <link rel="stylesheet" href="__CSS__/layout.css" />
+        <script type="text/javascript" src="__JS__/jquery.js"> </script>
+        <script type="text/javascript" src="__JS__/util.js"> </script>
+        <script type="text/javascript" src="__JS__/lazyload.js"> </script>
+	</head>
+
 
 <script type="text/javascript">
 
@@ -60,36 +72,33 @@ function bindUlEvent(){
 	
 }
 </script>
+ <div class="wrapper">
+     <div class="container">
 
-<div class="wrapper">
-	<div class="container">
-		<div class="topSearch">
-			<form id="search-form" action="{:U('Index/search')}" method="get">
-			<input type="text" id="search-text" name="key"  laceholder="示例" autocomplete="off" class="inputText"/>
-			<a href="#" id="search-city" class="btn">搜景点</a>
-			<ul id="tips-ul" class="tips-dialog">
+         <div class="topSearch">
+         	<form id="search-form" action="{:U('Index/search')}" method="get">
+	             <input type="text" id="search-text" name="key"  laceholder="示例" autocomplete="off" class="inputText"/><a href="#"  id="search-city" class="btn">搜景点</a><a href="#" class="btn">搜路线</a>
+	             <ul id="tips-ul" class="tips-dialog">
 
-			</ul>
-			<div class="clear"> </div>
-		</form>
-		</div>
+				</ul>
+	             <div class="clear"></div>
+             </form>
+         </div>
+         <div class="place">
+             <h2>搜索结果</h2>
+             <volist name="resultArr" id="row">
+             <div class="p-unit">
+                     <div class="p-title">{$row.ambiguity_sname}</div>
+                     <img data-original="{:U('Index/readImg')}?url={$row.full_url}" alt="" class="lazy" src="__IMG__/grey.jpg" width="207" height="134">
+                     <div class="p-detail">
+                     <p><a href="" class='p-intro'>{$row.more_desc}</a></p></div>
+                     <div class="clear"> </div>
+             </div>
+             </volist>
+         </div>
+     </div>
+ </div>
 
-		<div id="place">
-			<h2>搜索结果</h2>
-			<volist name="resultArr" id="row">
-			<div class="unit">
-				<a href="#"><div class="title">{$row.ambiguity_sname}</div>
-					<img data-original="{:U('Index/readImg')}?url={$row.full_url}" alt="" class="lazy" src="__IMG__/grey.jpg" width="207" height="134">
-					<div class="detail">
-						<p>{$row.more_desc}</p>
-					</div>
-					<div class="clear"> </div></a>
-			</div>
-			</volist>
-
-		</div>
-	</div>
-</div>
 <volist name="data" id="row">
 	<p>{$row.sid}--{$row.ambiguitySname}</p>
 </volist>

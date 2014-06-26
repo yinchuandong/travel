@@ -1,0 +1,24 @@
+
+.unit{
+    min-height:150px;
+	margin: 10px 0;
+    width: 600px;
+    line-height: 20px;
+}
+.unit .intro{
+    text-indent: 35px;
+}
+.price{
+    float: right;
+}
+.detail{
+    width: 400px;
+    float: left;
+}
+.unit img{
+     width:180px;
+     float: right;
+}
+.unit span{
+    margin-right: 20px;
+}
