@@ -45,9 +45,9 @@ $(document).ready(function(){
         $(cont).find('.j-route').on('click',function(event) {
             $('.j-map').show();
             $('.j-block').show();
-            var upday = parseInt($(this).attr('upday'));
-            var surl = $(this).attr('surl');
-            var jsonname = $(this).attr('jsonname');
+            var upday = parseInt($(cont).attr('upday'));
+            var surl = $(cont).attr('surl');
+            var jsonname = $(cont).attr('jsonname');
             var url = '/travel/traveldata/routes' + upday +'/' + surl + '/' + jsonname;
             getMap(url);
         });
@@ -57,7 +57,37 @@ $(document).ready(function(){
         $('.j-map').hide();
         $('.j-block').hide();
     });
+
+    //异步请求每个景点的具体数据
+    $('.j-unit').each(function(i, cont){
+    	var upday = parseInt($(this).attr('upday'));
+        var surl = $(this).attr('surl');
+        var jsonname = $(this).attr('jsonname');
+        var url = '/travel/traveldata/routes' + upday +'/' + surl + '/' + jsonname;
+        ajaxGetDetail(url, i);
+    });
 });
+
+
+function ajaxGetDetail(url, i){
+	$.ajax({
+		async:false,
+		method:'get',
+		url:url,
+		dataType:'json',
+		success:function(result){
+			var sceneryList = result.sceneryList;
+			var len = sceneryList.length;
+			var index = parseInt(Math.random()*100) % len;
+			var imgUrl = sceneryList[index].fullUrl;
+			var url = '{:U("Index/readImg")}?url='+imgUrl
+			$('.j-unit').eq(i).find('img').attr('src', url);
+			console.log(imgUrl);
+			console.log(i);
+			console.log('---------------');
+		}
+	});
+}
 
 function ajaxGet(key){
 	$.ajax({
@@ -119,7 +149,7 @@ function bindUlEvent(){
                  <volist name="routeList" id="row">
                  <div class="r-unit clearfix j-unit" sid="{$row.uid}" surl="{$row.surl}" jsonname="{$row.json_name}" upday="{$row.up_day}">   
                      <div class="title">{$row.sname}</div>
-                     <img src="{:U('Index/readImg')}?url={$row.full_url}" alt="" class='pic'>
+                     <img width="300px" src="{:U('Index/readImg')}?url={$row.full_url}" alt="" class='pic'>
                      <div class="detail">
                      <p>
                      	<php>
