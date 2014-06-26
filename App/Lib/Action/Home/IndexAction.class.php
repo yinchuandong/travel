@@ -35,11 +35,13 @@ class IndexAction extends Action {
      * 城市详情页
      */
     public function place(){
-    	$sid = $this->_get("sid");
-    	$city = D('Scenery')->where()->find();
+    	$surl = $_GET["surl"];
+//     	$city = D('Scenery')->where()->find();
+		$fileName = $surl.'-1.json';
+		$city = file_get_contents("E:\\traveldata\\webAll-unicode\\".$fileName);
+		$city = json_decode($city, true);		
     	$this->assign('city',$city);
-    	var_dump($city);
-//     	$this->display("Home:Index:place");
+    	$this->display("Home:Index:place");
     }
     
     public function searchRoute(){
