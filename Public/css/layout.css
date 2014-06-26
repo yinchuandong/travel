@@ -168,3 +168,13 @@ header h1{
     z-index: 200;
     background: rgba(0,0,0,0.8);
 }
+.m-unit{
+    width: 700px;
+}
+.m-detail{
+    width: 380px;
+    float: left;
+}
+.m-unit img{
+    float: right;
+}

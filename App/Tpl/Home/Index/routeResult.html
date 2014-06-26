@@ -45,9 +45,9 @@ $(document).ready(function(){
         $(cont).find('.j-route').on('click',function(event) {
             $('.j-map').show();
             $('.j-block').show();
-            var upday = parseInt($(this).attr('upday'));
-            var surl = $(this).attr('surl');
-            var jsonname = $(this).attr('jsonname');
+            var upday = parseInt($(cont).attr('upday'));
+            var surl = $(cont).attr('surl');
+            var jsonname = $(cont).attr('jsonname');
             var url = '/travel/traveldata/routes' + upday +'/' + surl + '/' + jsonname;
             getMap(url);
         });

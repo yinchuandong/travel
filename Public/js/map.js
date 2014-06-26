@@ -14,16 +14,14 @@ var oMap = {
 		}
 		});
 	},
-	init:function(){	
+	init:function(point){	
 		this.map = new BMap.Map("j-allmap");
 		//添加标注
-		this.sTemplate ="<div class='clearfix unit'><div class='detail'>"+
+		this.sTemplate ="<div class='clearfix m-unit'><div class='m-detail'>"+
                 "<h3>{sname}<span class='price'>价格：{price} 元</span></h3> "+
                 "<p class='intro'>{moreDesc}</p><h4>酒店</h4>";
         this.sTemplate2 ="<p><span>{hotelName}</span><span>价格：{price} 元</span></p><p><span>电话：{phone}</span></p>";
-        this.sTemplate3 ="</div><img style='float:right;margin:4px' id='imgDemo' src='http://192.168.233.21/travel/index.php/Index/readImg?url={fullUrl}' title='天安门'/></div>";
-		var point = new BMap.Point(113.981325,22.542315);
-        
+        this.sTemplate3 ="</div><img style='float:right;margin:4px' id='imgDemo' src='http://192.168.233.21/travel/index.php/Index/readImg?url={fullUrl}'/></div>";
 		this.map.centerAndZoom(point, 12);
 		//启用滚轮放大缩小
 		this.map.enableScrollWheelZoom();    
@@ -56,7 +54,9 @@ function getMap(url){
             var pointArr = [];
             var scontent = [];
             var len = data.sceneryList.length;
-             oMap.init();
+            var mid = parseInt(len/2);
+            var midPoint =  new BMap.Point(data.sceneryList[mid].lng,data.sceneryList[mid].lat);
+            oMap.init(midPoint);
             for(var i=0;i<len;i++){
                 var point = new BMap.Point(data.sceneryList[i].lng,data.sceneryList[i].lat);
                 var desc = data.sceneryList[i].moreDesc;
@@ -75,14 +75,6 @@ function getMap(url){
      });
 }
 $(document).ready(function(){
-    $('.j-unit').each(function(i,cont){
-        $(cont).find('.j-route').on('click',function(event) {
-            $('.j-map').show();
-            $('.j-block').show();
-            getMap();
-        });
-
-    });
 
     $('.j-delete').on('click',function(event) {
         $('.j-map').hide();
