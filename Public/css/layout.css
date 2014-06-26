@@ -1,31 +1,16 @@
 ﻿@charset "utf-8";
 /* CSS Document */
-*{
-    padding: 0;
-    margin: 0;
-    font-family: "微软雅黑"
-}
-a{
-    text-decoration: none;
-    color: #000;
-}
-.wrapper{
-    width: 100%;
-}
-.container{
-    width: 1020px;
-    margin: 0 auto;
-}
+
 .topSearch{
-    width: 650px;
+    width: 750px;
     margin-top: 40px;
 }
-.serch{
+.search{
     height: 35px;
-    width: 650px;
+    width: 750px;
     margin: 0 auto;
     margin-top: 200px;
-
+    position: relative;
 }
 .inputText{
     width: 474px;
@@ -49,44 +34,94 @@ a{
     line-height: 29px;
     text-align: center;
     color: #fff;
+    margin-left: 20px;
 }
-#place{
+.place{
     margin-top: 20px;
 }
 .clear{
     clear: both;
 }
-#place .unit{
-    width: 800px;
-    /*height: 184px;*/
-    padding-bottom: 20px;
+.place .p-unit{
+    width: 760px;
+    height: 184px;
     margin-bottom: 20px;
     border-bottom: #ccc 1px solid;
 }
 
-#place .unit .title{
+.place .p-unit .p-title{
+    font-size: 16px;
     width: 100%;
     margin: 10px 0;
-    padding-left: 5px;
-    border-left: 15px solid rgb(85, 158, 231);
-    font-size: 24px;
-    font-weight: 500;
-    color: rgb(85, 158, 231);
-    line-height: 30px;
 }
-#place .unit img{
+.place .p-unit img{
     float: left;
-    width: 207px;
+
 }
-#place .unit .detail{
+.place .p-unit .p-detail{
     width: 530px;
-    line-height: 21px;
+    line-height: 20px;
     padding: 10px;
     font: 12px;
     float: left;
-    height: 114px;
+    height: 138px;
+    overflow: hidden;
+}
+.place .p-unit .p-detail .p-intro{
+    line-height: 24px;
+}
+#condition{
+    margin: 20px 0;
+}
+#condition a ,.sort a,.place .route,.p-intro{
+    color: #0d63ed;
+    height:20px;
+    line-height: 30px;
+    margin-right: 10px;
+}
+#condition a:hover,.sort a:hover,.place .route:hover,.p-intro:hover{
+    color: #e33535;
+}
+#search-form{
+    position: relative;
+    margin: 0 auto;
+    /*width: 580px;*/
 }
 
-.detail{
-    overflow: hidden;
+.tips-dialog{
+    width: 487px;
+    position: absolute;
+    left: 1px;
+    top: 33px;
+    border: 1px solid #ccc;
+    margin-top: 2px;
+    line-height: 25px;
+    background-color: #fff;
+    display: none;
+}
+
+.tips-dialog li{
+    list-style: none;
+}
+
+.tips-dialog li:hover{
+    background-color: #ebebeb;
+}
+
+/*place.html*/
+header{
+    width: 100%;
+    height: 390px;
+    background: url(../images/header_51408dcc.png) no-repeat;
+    padding-top: 50px;
+    color: #fff;
+    
+}
+header p{
+    line-height: 30px;
+    text-indent: 40px;
+}
+header h1{
+   
+    margin: 10px;
 }

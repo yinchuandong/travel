@@ -1,4 +1,16 @@
-<include file="Public:header" />
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>搜索引擎</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+        <meta name="viewport"  content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+        <link rel="stylesheet" href="__CSS__/reset.css" />
+        <link rel="stylesheet" href="__CSS__/layout.css" />
+        <script type="text/javascript" src="__JS__/jquery.js"> </script>
+        <script type="text/javascript" src="__JS__/util.js"> </script>
+        <script type="text/javascript" src="__JS__/lazyload.js"> </script>
+	</head>
+
 
 <script type="text/javascript">
 	
@@ -57,19 +69,21 @@ function bindUlEvent(){
 	
 }
 </script>
+<body>
+	<div class="wrapper">
+         <div class="container">
+         	<form id="search-form" action="{:U('Index/search')}" method="get">
+	             <div class="search">
+	                 <input type="text" id="search-text" name="key"  laceholder="示例" autocomplete="off" class="inputText"/><a href="#" class="btn">搜景点</a><a href="#" class="btn">搜路线</a>
+	                 <ul id="tips-ul" class="tips-dialog">
 
-<div class="wrapper">
-<div class="container">
+					</ul>
+	             </div>
+             </form>
+         </div>
+     </div>
 	<div class="serch">
-		<form id="search-form" action="{:U('Index/search')}" method="get">
-			<input type="text" id="search-text" name="key"  laceholder="示例" autocomplete="off" class="inputText"/>
-			<a href="#" id="search-city" class="btn">搜景点</a>
-			<ul id="tips-ul" class="tips-dialog">
 
-			</ul>
-		</form>
-
-	</div>
-</div>
+		
 
 <include file="Public:footer" />
