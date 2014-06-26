@@ -10,8 +10,9 @@ class RouteModel extends Model{
 		$where = array(
 			"sname" => $city,
 			"price" => array(array('EGT',$downPrice), array('ELT', $upPrice)),
-			"upDay" => $day
+			"up_day" => $day
 		);
+		var_dump($where);
 		return $this->where($where)->order($orderBy.' '.$sort)->select();
 	}
 	

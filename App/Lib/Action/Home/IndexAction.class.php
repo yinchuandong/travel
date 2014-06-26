@@ -45,7 +45,7 @@ class IndexAction extends Action {
     }
     
     public function searchRoute(){
-    	$city = $this->_get("city");
+    	$city = $this->_get("key");
     	$price = $this->_get("price");
     	$day = $this->_get("day");
     	$orderby = $this->_get("orderby");
@@ -56,9 +56,19 @@ class IndexAction extends Action {
     	if ($sort != 'asc') {
     		$sort = 'desc';
     	}
+    	
     	$priceArr = explode(",", $price);
-    	$downPrice = $priceArr[0];
-    	$upPrice = $priceArr[1];
+    	if (count($priceArr) == 2){
+    		$downPrice = $priceArr[0];
+    		$upPrice = $priceArr[1];
+    	}else{
+    		$downPrice = 300;
+    		$upPrice = 500;
+    	}
+    	
+    	if (empty($day)) {
+    		$day = 3;
+    	}
     	$model = new RouteModel();
 //     	$city="惠州";
 //     	$downPrice=200;

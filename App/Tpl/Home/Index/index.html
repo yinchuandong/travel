@@ -27,7 +27,15 @@ $(document).ready(function(){
 	});
 
 	$('#search-city').click(function(e){
-		$("#search-form").submit();
+		var form = $("#search-form");
+		form.attr('action', "{:U('Index/search')}");
+		form.submit();
+	});
+	
+	$('#search-route').click(function(e){
+		var form = $("#search-form");
+		form.attr('action', "{:U('Index/searchRoute')}");
+		form.submit();
 	});
 
 	$(document).keydown(function(e){
@@ -72,13 +80,16 @@ function bindUlEvent(){
 <body>
 	<div class="wrapper">
          <div class="container">
-         	<form id="search-form" action="{:U('Index/search')}" method="get">
 	             <div class="search">
-	                 <input type="text" id="search-text" name="key"  laceholder="示例" autocomplete="off" class="inputText"/><a href="#" class="btn">搜景点</a><a href="#" class="btn">搜路线</a>
+	             <form id="search-form" action="{:U('Index/search')}" method="get">
+	                 <input type="text" id="search-text" name="key"  placeholder="示例" autocomplete="off" class="inputText"/>
+	                 
+	                 <a href="#" id="search-city" class="btn">搜景点</a>
+	                 <a href="#" id="search-route" class="btn">搜路线</a>
 	                 <ul id="tips-ul" class="tips-dialog">
 					</ul>
+				</form>
 	             </div>
-             </form>
          </div>
      </div>
 	<div class="serch">
