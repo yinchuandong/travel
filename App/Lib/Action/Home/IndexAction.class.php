@@ -8,7 +8,7 @@ class IndexAction extends Action {
     
     public function search(){
     	$key = $this->_get("key");
-    	$httpUtil = new HttpUtil("http://127.0.0.1:8080/Traveljsp/search.jsp?key=".$key);
+    	$httpUtil = new HttpUtil("http://192.168.233.21:8080/Traveljsp/search.jsp?key=".$key);
     	$result = $httpUtil->getContent();
     	//第二个参数指定为true可以返回一个数组
     	$result = json_decode($result, true);
@@ -26,7 +26,7 @@ class IndexAction extends Action {
 
     public function suggest(){
     	$key = $this->_get("key");
-    	$httpUtil = new HttpUtil("http://127.0.0.1:8080/Traveljsp/suggest.jsp?key=".$key);
+    	$httpUtil = new HttpUtil("http://192.168.233.21:8080/Traveljsp/suggest.jsp?key=".$key);
     	$data = $httpUtil->getContent();
 		echo $data;
     }
