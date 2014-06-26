@@ -42,10 +42,12 @@ var oMap = {
 		}
 	}
 }
-function getMap(){
+
+function getMap(url){
+    // url: "/travel/traveldata/panyu_0_33a24682e1775bc6d5a81ae33834721.json", 
     $.ajax({
          type: "GET",
-         url: "/travel/traveldata/panyu_0_33a24682e1775bc6d5a81ae33834721.json",
+         url:url,
          dataType: "json",
          error:function(data){
             debug(3333333333333);
