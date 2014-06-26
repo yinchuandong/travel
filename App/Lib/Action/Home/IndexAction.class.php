@@ -47,8 +47,27 @@ class IndexAction extends Action {
     public function searchRoute(){
     	$city = $this->_get("city");
     	$price = $this->_get("price");
-    	$day = $this->get("day");
-    	
+    	$day = $this->_get("day");
+    	$orderby = $this->_get("orderby");
+    	$sort = $this->_get("sort");
+    	if (empty($orderby)) {
+    		$orderby = 'hotness';
+    	}
+    	if ($sort != 'asc') {
+    		$sort = 'desc';
+    	}
+    	$priceArr = explode(",", $price);
+    	$downPrice = $priceArr[0];
+    	$upPrice = $priceArr[1];
+    	$model = new RouteModel();
+//     	$city="惠州";
+//     	$downPrice=200;
+//     	$upPrice=300;
+//     	$day=3;
+    	$routeList = $model->getRoute($city, $downPrice, $upPrice, $day, $orderby, $sort);
+    	$this->assign("routeList", $routeList);
+//     	var_dump($routeList);
+    	$this->display("Home:Index:routeResult");
     }
     
     public function readImg(){
