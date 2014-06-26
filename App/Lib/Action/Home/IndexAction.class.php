@@ -57,7 +57,7 @@ class IndexAction extends Action {
     		$sort = 'desc';
     	}
     	
-    	$priceArr = explode(",", $price);
+    	$priceArr = explode("-", $price);
     	if (count($priceArr) == 2){
     		$downPrice = $priceArr[0];
     		$upPrice = $priceArr[1];
