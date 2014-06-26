@@ -83,9 +83,25 @@ $(document).ready(function(){
         });
 
     });
+
     $('.j-delete').on('click',function(event) {
         $('.j-map').hide();
         $('.j-block').hide();
+    });
+
+    $('#condition').each(function(i,cont){
+        $(this).find('.j-price a').on('click',function(){
+            var price = $(this).text();
+            $('#search-price').val(price);
+            $('#search-form').submit();
+        });
+        $(this).find('.j-day a').on('click',function(){
+            var day = $(this).text();
+            day = day.substring(0,day.indexOf("天"));
+            console.log(day);
+            $('#search-day').val(day);
+            $('#search-form').submit();
+        });
     });
 });
 
