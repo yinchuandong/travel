@@ -98,6 +98,7 @@
     line-height: 25px;
     background-color: #fff;
     display: none;
+    z-index: 199;
 }
 
 .tips-dialog li{
