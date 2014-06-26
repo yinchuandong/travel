@@ -91,7 +91,7 @@ function bindUlEvent(){
                      <div class="p-title">{$row.ambiguity_sname}</div>
                      <img data-original="{:U('Index/readImg')}?url={$row.full_url}" alt="" class="lazy" src="__IMG__/grey.jpg" width="207" height="134">
                      <div class="p-detail">
-                     <p><a href="" class='p-intro'>{$row.more_desc}</a></p></div>
+                     <p><a href="{:U('Index/place')}?surl={$row.surl}" class='p-intro'>{$row.more_desc}</a></p></div>
                      <div class="clear"> </div>
              </div>
              </volist>

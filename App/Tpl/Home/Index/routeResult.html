@@ -5,6 +5,8 @@
 <link rel="stylesheet" type="text/css" href="__CSS__/reset.css">
 <link rel="stylesheet" href="__CSS__/layout.css">
 <script src="__JS__/jquery.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=dDRFWXdUXMKF0UL0UGoD2aeu"></script> 
+<script type="text/javascript" src='__JS__/map.js'></script>
 <title>搜索路线</title>
 </head>
 <body>
@@ -19,24 +21,28 @@
                  <p><span>天数： </span><a href="#">3天</a><a href="#">4天</a><a href="#">5天</a></p>
                  <p><span>价格： </span><a href="#">0-300</a><a href="#">300-600</a><a href="#">600-900</a><a href="#">900-1200</a><a href="#">1200以上</a></p>
              </div>
-             <div class="place">
+             <div class="routediv">
                  <h2>搜索结果</h2>
                  <p class='sort'><span>排序：</span><a href="#">热度</a><a href="#">价格</a><a href="#">距离</a></p>
                  <volist name="routeList" id="row">
-                 <div class="unit">   
+                 <div class="unit clearfix">   
                      <div class="title">{$row.sname}</div>
                      <img src="__IMG__/1.jpg" alt="">
                      <div class="detail">
                      <p>
-	                     <a href="#" class='route'>
-	                     <span><php>var_dump(explode($row['route_desc'],','));</php></span>
+	                     <a href="#" class='route  j-route'>
+	                     <span>{$row.route_desc}</span>
 	                     </a>
                      </p>
                      <p>天数：<span>{$row.visit_day}天</span></p>
                      <p>价格：<span>{$row.sum_price}元</span></p>
                      <p>距离：<span><php>echo $row['sum_price']/1000;</php>km</span></p>
+
                      </div>
-                     <div class="clear"> </div>
+                     
+                    <div id="j-allmap" style='width: 960px;height: 700px;overflow: hidden;margin:0 auto;'></div>
+    
+                <div class="clear"> </div>
                  </div>
                  </volist>
              </div>

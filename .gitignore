@@ -1,2 +1,4 @@
 traveldata/*
 traveldata*
+App/Runtime/*
+App/Runtime/.*
