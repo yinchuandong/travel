@@ -42,10 +42,10 @@ var oMap = {
 		}
 	}
 }
-$(document).ready(function(){
+function getMap(){
     $.ajax({
          type: "GET",
-         url: "panyu_0_33a24682e1775bc6d5a81ae33834721.json",
+         url: "/travel/traveldata/panyu_0_33a24682e1775bc6d5a81ae33834721.json",
          dataType: "json",
          error:function(data){
             debug(3333333333333);
@@ -71,8 +71,18 @@ $(document).ready(function(){
             oMap.addLabel(pointArr,scontent);
          }
      });
-
+}
+$(document).ready(function(){
+    $('.j-unit').each(function(i,cont){
+        $(cont).find('.j-route').click(function(event) {
+            console.log(3);
+            $('#j-allmap').show();
+            getMap();
+        });
+    });
 });
+
+
 function replaceTpl (template, data) {
     var outPrint = "";
     for (var i = 0; i < data.length; i++) {

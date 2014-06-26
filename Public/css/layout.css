@@ -130,6 +130,9 @@ header h1{
 }
 
 /*routeresult.html  searchRoute*/
+.routediv{
+    position: relative;
+}
 .routediv img{
     float: left;
 }

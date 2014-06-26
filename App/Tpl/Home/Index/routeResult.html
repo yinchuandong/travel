@@ -25,7 +25,7 @@
                  <h2>搜索结果</h2>
                  <p class='sort'><span>排序：</span><a href="#">热度</a><a href="#">价格</a><a href="#">距离</a></p>
                  <volist name="routeList" id="row">
-                 <div class="unit clearfix">   
+                 <div class="r-unit clearfix j-unit">   
                      <div class="title">{$row.sname}</div>
                      <img src="__IMG__/1.jpg" alt="">
                      <div class="detail">
@@ -39,12 +39,11 @@
                      <p>距离：<span><php>echo $row['sum_price']/1000;</php>km</span></p>
 
                      </div>
-                     
-                    <div id="j-allmap" style='width: 960px;height: 700px;overflow: hidden;margin:0 auto;'></div>
-    
-                <div class="clear"> </div>
+                    
+                 <div class="clear"> </div>
                  </div>
                  </volist>
+                 <div id="j-allmap" style='display:none;width: 960px;height: 700px;overflow: hidden;position:absolute;z-index:999;top:0;'></div>
              </div>
          </div>
      </div>
