@@ -76,6 +76,7 @@ function bindUlEvent(){
 </head>
 <body>
      <div class="wrapper">
+        <div class='block j-block'></div>
          <div class="container">
              <div class="topSearch">
 	            <form id="search-form" action="{:U('Index/search')}" method="get">
@@ -100,7 +101,7 @@ function bindUlEvent(){
                  <volist name="routeList" id="row">
                  <div class="r-unit clearfix j-unit" sid="{$row.uid}" surl="{$row.surl}">   
                      <div class="title">{$row.sname}</div>
-                     <img src="__IMG__/1.jpg" alt="">
+                     <img src="__IMG__/1.jpg" alt="" class='pic'>
                      <div class="detail">
                      <p>
                      	<php>
@@ -122,14 +123,17 @@ function bindUlEvent(){
                      </p>
                      <p>天数：<span>{$row.visit_day}天</span></p>
                      <p>价格：<span>{$row.sum_price}元</span></p>
-                     <p>距离：<span><php>echo $row['sum_price'];</php>km</span></p>
+                     <p>距离：<span><php>echo $row['distance'] / 1000;</php>km</span></p>
 					 <p>热度：<span>{$row.view_count}</span></p>
                      </div>
                     
                  <div class="clear"> </div>
                  </div>
                  </volist>
-                 <div id="j-allmap" style='display:none;width: 960px;height: 700px;overflow: hidden;position:absolute;z-index:999;top:0;'></div>
+                 <div class='map j-map'>
+                    <p><img src="__IMG__/delete_on.png" class='j-delete'></p>
+                    <div id="j-allmap" style='width: 960px;height: 700px;overflow: hidden;'></div>
+                 </div>
              </div>
          </div>
      </div>
