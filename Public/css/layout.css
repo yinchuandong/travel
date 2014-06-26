@@ -73,13 +73,13 @@
 #condition{
     margin: 20px 0;
 }
-#condition a ,.sort a,.place .route,.p-intro{
+#condition a ,.sort a,.route,.p-intro{
     color: #0d63ed;
     height:20px;
     line-height: 30px;
     margin-right: 10px;
 }
-#condition a:hover,.sort a:hover,.place .route:hover,.p-intro:hover{
+#condition a:hover,.sort a:hover,.route:hover,.p-intro:hover{
     color: #e33535;
 }
 #search-form{
@@ -124,4 +124,17 @@ header p{
 header h1{
    
     margin: 10px;
+}
+.box_skitter{
+    margin: 0 auto 50px auto;
+}
+
+/*routeresult.html  searchRoute*/
+.routediv img{
+    float: left;
+}
+.routediv .detail{
+    float: left;
+    margin-left: 20px;
+    width: 500px;
 }
