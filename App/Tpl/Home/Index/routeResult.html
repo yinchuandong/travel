@@ -29,7 +29,7 @@
                      <div class="detail">
                      <p>
 	                     <a href="#" class='route'>
-	                     <span>{$row.route_desc}</span>
+	                     <span><php>var_dump(explode($row['route_desc'],','));</php></span>
 	                     </a>
                      </p>
                      <p>天数：<span>{$row.visit_day}天</span></p>

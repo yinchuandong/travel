@@ -70,6 +70,13 @@ class IndexAction extends Action {
     	$this->display("Home:Index:routeResult");
     }
     
+    public function getJson(){
+    	$upday = $this->_get("up_day");
+    	$filename = $this->_get("json_name");
+    	$content = file_get_contents("E:\\traveldata\\".$filename);
+    	echo $content;
+    }
+    
     public function readImg(){
     	$url = $this->_get("url");
 //         $url = 'http://t11.baidu.com/it/u=2426557693,2933321208&fm=22';
