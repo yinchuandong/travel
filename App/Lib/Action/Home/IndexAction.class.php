@@ -1,27 +1,32 @@
 <?php
 class IndexAction extends Action {
-    public function index(){
-    	import("ORG.HttpUtil");
+	public function index(){
+		$this->redirect("Home/Index/search");
+		import("ORG.HttpUtil");
     	$this->display("Home:Index:index");
-    	
     }
     
-    public function search(){
+	public function search(){
     	$key = $this->_get("key");
-    	$httpUtil = new HttpUtil("http://192.168.233.21:8080/Traveljsp/search.jsp?key=".$key);
-    	$result = $httpUtil->getContent();
-    	//第二个参数指定为true可以返回一个数组
-    	$result = json_decode($result, true);
-    	$data = $result["data"];
-    	$sidArr = array();
-    	foreach ($data as $row){
-    		$sidArr[] = $row["sid"];
-    	}
-    	$model = new SceneryModel();
-    	$arr = $model->getSceneryList($sidArr);
-    	$this->assign("resultArr", $arr);
+    //	$httpUtil = new HttpUtil("http://192.168.233.21:8080/Traveljsp/search.jsp?key=".$key);
+    //	$result = $httpUtil->getContent();
+    //	//第二个参数指定为true可以返回一个数组
+    //	$result = json_decode($result, true);
+    //	$data = $result["data"];
+    //	$sidArr = array();
+    //	foreach ($data as $row){
+    //		$sidArr[] = $row["sid"];
+    //	}
+    //	$model = new SceneryModel();
+    //	$arr = $model->getSceneryList($sidArr);
+    //	$this->assign("resultArr", $arr);
     	
     	$this->display("Home:Index:search");
+    }
+    
+    public function route(){
+    	$this->assign("title", "路线详情");
+    	$this->display("Home:Index:route");
     }
 
     public function suggest(){
@@ -43,7 +48,7 @@ class IndexAction extends Action {
     	$this->assign('city',$city);
     	$this->display("Home:Index:place");
     }
-    
+        
     public function searchRoute(){
     	$city = $this->_get("key");
     	$price = $this->_get("price");

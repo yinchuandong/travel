@@ -42,7 +42,6 @@ $(document).ready(function(){
 
 function ajaxGet(key){
 	$.ajax({
-		async:false,
 		method:'get',
 		data:{'key': key},
 		url:'{:U("Index/suggest")}',

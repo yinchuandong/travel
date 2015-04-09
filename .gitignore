@@ -2,3 +2,4 @@ traveldata/*
 traveldata*
 App/Runtime/*
 App/Runtime/.*
+.idea

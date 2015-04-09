@@ -39,7 +39,7 @@ var oMap = {
 			this.addMarker(pointArr[i],sContent[i]);
 		}
 	}
-}
+};
 
 function getMap(url){
     // url: "/travel/traveldata/panyu_0_33a24682e1775bc6d5a81ae33834721.json", 

@@ -23,8 +23,8 @@ a{
 .wrapper{
     width: 100%;
 }
-.container{
-    width: 1020px;
+.my-container{
+   width: 1020px;
     margin: 0 auto;
 }
 .fl{
@@ -32,4 +32,14 @@ a{
 }
 .fr{
 	float: right;
+}
+
+.main{
+    float: left;
+    width: 400px;
+}
+
+.side{
+    float: right;
+    width: 600px;
 }
