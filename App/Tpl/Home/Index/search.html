@@ -1,109 +1,145 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>搜索引擎</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
-        <meta name="viewport"  content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
-        <link rel="stylesheet" href="__CSS__/reset.css" />
-        <link rel="stylesheet" href="__CSS__/layout.css" />
-        <script type="text/javascript" src="__JS__/jquery.js"> </script>
-        <script type="text/javascript" src="__JS__/util.js"> </script>
-        <script type="text/javascript" src="__JS__/lazyload.js"> </script>
-	</head>
+<include file="Public:header" />
 
 
+<div class="wrapper">
+	<div class='block j-block'></div>
+	<div class="my-container">
+		<div class="topSearch">
+			<form id="search-form" action="{:U('Index/search')}" method="get">
+				<input type="text" id="search-text" name="key" placeholder="示例" autocomplete="off" class="inputText"/>
+				<input type="hidden" id="search-day" name="day" value="3" />
+				<input type="hidden" id="search-price" name="price" value="300-600" />
+				<a href="#" id="search-route" class="my-btn">搜路线</a>
+				<ul id="tips-ul" class="tips-dialog">
+				</ul>
+			</form>
+			<div class="clear"></div>
+		</div>
+		<div id="condition" class="condition">
+			<h3>筛选条件</h3>
+			<p class='condition-day'>
+				<span>天数： </span>
+				<ul class="nav nav-pills">
+					<li class="active">
+						<a href="#">不限</a>
+					</li>
+					<li><a href="#">3天</a></li>
+					<li><a href="#">4天</a></li>
+					<li><a href="#">5天</a></li>
+				</ul>
+			</p>
+			<p class='condition-price'>
+				<span>预算： </span>
+				<ul class="nav nav-pills">
+					<li class="active">
+						<a href="#">不限</a>
+					</li>
+					<li><a href="#">0-300</a></li>
+					<li><a href="#">300-600</a></li>
+					<li><a href="#">600-900</a></li>
+					<li><a href="#">900-1200</a></li>
+				</ul>
+			</p>
+			<p class='condition-price'>
+				<span>排序： </span>
+				<ul class="nav nav-pills">
+					<li class="active">
+						<a href="#">热度</a>
+					</li>
+					<li><a href="#">价格</a></li>
+					<li><a href="#">距离</a></li>
+				</ul>
+			</p>
+		</div>
+
+		<div class="routediv">
+			<!--<h2>搜索结果</h2>-->
+			<!--<p class='sort'>-->
+				<!--<span>排序：</span>-->
+				<!--<a href="#">热度</a>-->
+				<!--<a href="#">价格</a>-->
+				<!--<a href="#">距离</a>-->
+			<!--</p>-->
+
+			<div class="r-unit clearfix">
+
+
+			</div>
+			<div class="r-unit clearfix">
+
+
+			</div>
+			<div class="r-unit clearfix">
+
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="bg"></div>
+
+</div>
+<script type="text/javascript" src="__JS__/lazyload.js"> </script>
+<script type="text/javascript" src="__JS__/search.js"></script>
 <script type="text/javascript">
 
-window.onload = function(){
-	$('.lazy').lazyload({"threshold":0});
-}
-$(document).ready(function(){
-	$('#search-text').keyup(function(){
-		var key = $(this).val();
-		if (key == null || key == "") {
-			$("#tips-ul").hide();
-			return ;
-		};
-		$("#tips-ul").slideDown();
-		console.log(key);
-		ajaxGet(key);
-	});
+	window.onload = function(){
+		$('.lazy').lazyload({"threshold":0});
+	}
+	$(document).ready(function(){
+		$('#search-text').keyup(function(){
+			var key = $(this).val();
+			if (key == null || key == "") {
+				$("#tips-ul").hide();
+				return ;
+			};
+			$("#tips-ul").slideDown();
+			console.log(key);
+			ajaxGet(key);
+		});
 
-	$('#search-city').click(function(e){
-		$("#search-form").submit();
-	});
-
-	$(document).keydown(function(e){
-		if (e.keyCode == 13) {
+		$('#search-city').click(function(e){
 			$("#search-form").submit();
-		};
-	});
-});
+		});
 
-function ajaxGet(key){
-	$.ajax({
-		method:'get',
-		data:{'key': key},
-		url:'{:U("Index/suggest")}',
-		dataType:'json',
-		success:function(result){
-			console.log(result);
-			var data = result.data;
-			// console.log(result.info);
-			if (data.length > 0) {
-				var elemStr = replaceTpl("<li>{word}</li>",data);
-				$("#tips-ul").empty();
-				$("#tips-ul").append(elemStr);
-				bindUlEvent();
+		$(document).keydown(function(e){
+			if (e.keyCode == 13) {
+				$("#search-form").submit();
+			};
+		});
+	});
+
+	function ajaxGet(key){
+		$.ajax({
+			method:'get',
+			data:{'key': key},
+			url:'{:U("Index/suggest")}',
+			dataType:'json',
+			success:function(result){
+				console.log(result);
+				var data = result.data;
+				// console.log(result.info);
+				if (data.length > 0) {
+					var elemStr = replaceTpl("<li>{word}</li>",data);
+					$("#tips-ul").empty();
+					$("#tips-ul").append(elemStr);
+					bindUlEvent();
+				}
 			}
-		}
-	});
-}
+		});
+	}
 
 
-function bindUlEvent(){
-	$("#tips-ul li").unbind("click");
-	$("#tips-ul li").bind("click", function(e){
-		var key = $(this).text();
-		$("#search-text").val(key);
-		$("#search-form").submit();
-	});
-	
-}
+	function bindUlEvent(){
+		$("#tips-ul li").unbind("click");
+		$("#tips-ul li").bind("click", function(e){
+			var key = $(this).text();
+			$("#search-text").val(key);
+			$("#search-form").submit();
+		});
+	}
 </script>
- <div class="wrapper">
-     <div class="container">
-
-         <div class="topSearch">
-         	<form id="search-form" action="{:U('Index/search')}" method="get">
-	             <input type="text" id="search-text" name="key"  laceholder="示例" autocomplete="off" class="inputText"/><a href="#"  id="search-city" class="btn">搜景点</a><a href="#" class="btn">搜路线</a>
-	             <ul id="tips-ul" class="tips-dialog">
-
-				</ul>
-	             <div class="clear"></div>
-             </form>
-         </div>
-         <div class="place">
-             <h2>搜索结果</h2>
-             <volist name="resultArr" id="row">
-             <div class="p-unit">
-                     <div class="p-title">{$row.ambiguity_sname}</div>
-                     <img data-original="{:U('Index/readImg')}?url={$row.full_url}" alt="" class="lazy" src="__IMG__/grey.jpg" width="207" height="134">
-                     <div class="p-detail">
-                     <p><a href="{:U('Index/place')}?surl={$row.surl}" class='p-intro'>{$row.more_desc}</a></p></div>
-                     <div class="clear"> </div>
-             </div>
-             </volist>
-         </div>
-     </div>
- </div>
-
-<volist name="data" id="row">
-	<p>{$row.sid}--{$row.ambiguitySname}</p>
-</volist>
-
-<volist name="arr" id="row">
-	<p>{$row.sid}--{$row.ambiguity_sname}--{$row.view_count}</p>
-</volist>
 
 <include file="Public:footer" />

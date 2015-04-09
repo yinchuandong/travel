@@ -23,7 +23,7 @@
     outline: none;
     float: left;
 }
-.btn{
+.my-btn{
     float: left;
     background: #6980FF;
     border: #7654FF 1px solid;
@@ -62,7 +62,7 @@
     width: 530px;
     line-height: 20px;
     padding: 10px;
-    font: 12px;
+    font-size: 12px;
     float: left;
     height: 138px;
     overflow: hidden;
@@ -74,13 +74,13 @@
     margin: 20px 0;
 }
 #condition a ,.sort a,.route,.p-intro{
-    color: #0d63ed;
-    height:20px;
-    line-height: 30px;
-    margin-right: 10px;
+    /*color: #0d63ed;*/
+    /*height:20px;*/
+    /*line-height: 30px;*/
+    /*margin-right: 10px;*/
 }
 #condition a:hover,.sort a:hover,.route:hover,.p-intro:hover{
-    color: #e33535;
+    /*color: #e33535;*/
 }
 #search-form{
     position: relative;
@@ -204,4 +204,22 @@ header h1{
     height: 700px;
     overflow: hidden;
     margin:0 auto;
+}
+
+.condition p{
+    float: left;
+}
+.condition {
+    background: #f8f8f8;
+    padding: 10px 0 10px 10px;
+    border-radius: 6px;
+}
+
+.r-unit{
+    width: 100%;
+    min-height: 300px;
+    margin-top: 20px;
+    background: #ffffff;
+    border-radius: 6px;
+    box-shadow: -4px 4px 4px rgba(0,0,0,.3) ;
 }
