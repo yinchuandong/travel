@@ -20,6 +20,8 @@ class IndexAction extends Action {
     //	$model = new SceneryModel();
     //	$arr = $model->getSceneryList($sidArr);
     //	$this->assign("resultArr", $arr);
+    
+    	$this->assign("title", "路线搜索");
     	
     	$this->display("Home:Index:search");
     }
