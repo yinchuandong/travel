@@ -223,3 +223,105 @@ header h1{
     border-radius: 6px;
     box-shadow: -4px 4px 4px rgba(0,0,0,.3) ;
 }
+
+.love{
+    margin-top: 5px;
+    display: inline-block;
+    background: url(../images/love.png) no-repeat;
+    background-size: 26px 22px;
+    float: left;
+    margin-right: 10px;
+    height: 22px;
+    width: 26px;
+}
+.star{
+    position: relative;
+    width: 200px;
+    height: 32px;
+    float: left;
+}
+.star:before,.star:after{
+    display: table;
+    content: "";
+    line-height: 0;
+}
+.star:before{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(../images/star.png);
+    width: 200px;
+    height: 32px;
+}
+.r-name{
+    margin-right: 50px;
+}
+.star-gold{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: 1px 31px url(../images/star.png);
+    width: 200px;
+    height: 32px;
+}
+.star0{
+    width: 0px;
+}
+.star1{
+    width: 16px;
+}
+.star2{
+    width: 40px;
+}
+.star3{
+    width: 58px;
+}
+.star4{
+    width: 80px;
+}
+.star5{
+    width: 100px;
+}
+.star6{
+    width: 120px;
+}
+.star7{
+    width: 142px;
+}
+.star8{
+    width: 164px;
+}
+.star9{
+    width: 184px;
+}
+.star10{
+    width: 200px;
+}
+
+.r-title{
+    padding-left: 20px;
+    height: 40px;
+}
+.r-title span{
+    float: left;
+}
+.r-title div{
+    float: left;
+    margin-right: 40px;
+}
+.r-detail{
+    padding: 20px;
+    width: 100%;
+}
+.r-route{
+    width: 70%;
+    float: left;
+}
+.r-img{
+    width: 29%;
+    float: right;
+}
+.r-img img{
+    width: 100%;
+}

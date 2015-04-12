@@ -1,8 +1,8 @@
 <?php
 return array(
 	//'配置项'=>'配置值'	
- 	'APP_DEBUG'             => true,        // 开启调试模式
- 	'APP_STATUS'			=> 'debug',
+ 	// 'APP_DEBUG'             => true,        // 开启调试模式
+ 	// 'APP_STATUS'			=> 'debug',
 	'DB_TYPE'               => 'mysql',     // 数据库类型
 	'DB_HOST'               => '127.0.0.1', // 服务器地址
 	'DB_NAME'               => 'travel',      // 数据库名
@@ -18,7 +18,7 @@ return array(
 
 	'OUTPUT_ENCODE'=>false,	//导出excel表格时避免错误
 	
-    'APP_GROUP_LIST'        => 'Home,Admin',      // 项目分组设定,多个组之间用逗号分隔,例如'Home,Admin'
+    'APP_GROUP_LIST'        => 'Home',      // 项目分组设定,多个组之间用逗号分隔,例如'Home,Admin'
 	'DEFAULT_GROUP'         => 'Home',  // 默认分组
 	
  	/* 资源路径 */
