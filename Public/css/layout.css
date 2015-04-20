@@ -196,9 +196,9 @@ header h1{
 
 .container-allmap{
     width:600px;
-    padding: 0 20px;
     height: 700px;
     position: fixed;
+    padding-bottom: 10px;
 }
 .allmap{
     width:100%;
