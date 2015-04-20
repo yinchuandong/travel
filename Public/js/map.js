@@ -1,47 +1,74 @@
 
 // 百度地图API功能
 var oMap = {
+    sTemplate: '',
+    sTemplate2:'',
+    sTemplate3:'',
 	map:null,
-	addMarker:function(point,sContent){
-		var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
-		var marker = new BMap.Marker(point);
-		this.map.addOverlay(marker);
-		marker.addEventListener("click", function(){          
-		this.openInfoWindow(infoWindow);
-		//图片加载完毕重绘infowindow
-		document.getElementById('imgDemo').onload = function (){
-		   infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
-		}
-		});
-	},
-	init:function(point){	
+    color:['red','blue','green', 'yellow', 'purple','black', '#626262'],
+
+	init:function(){
 		this.map = new BMap.Map("j-allmap");
 		//添加标注
 		this.sTemplate ="<div class='clearfix m-unit'><div class='m-detail'>"+
                 "<h3>{sname}<span class='price'>价格：{price} 元</span></h3> "+
                 "<p class='intro'>{moreDesc}</p><h4>酒店</h4>";
         this.sTemplate2 ="<p><span>{hotelName}</span><span>价格：{price} 元</span></p><p><span>电话：{phone}</span></p>";
-        this.sTemplate3 ="</div><img style='float:right;margin:4px' id='imgDemo' src='http://192.168.233.21/travel/index.php/Index/readImg?url={fullUrl}'/></div>";
-		this.map.centerAndZoom(point, 12);
+        this.sTemplate3 ="</div><img style='float:right;margin:4px' id='imgDemo' src='http://127.0.0.1/travel/index.php/Index/readImg?url={fullUrl}'/></div>";
 		//启用滚轮放大缩小
 		this.map.enableScrollWheelZoom();    
 		this.map.enableContinuousZoom();
-	},
-	addPoint:function(pointArr){
+        var topLeftNavigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
+        this.map.addControl(topLeftNavigation);
+    },
+
+    setCenter: function(point){
+        this.map.centerAndZoom(point, 11);
+    },
+
+    /**
+     * 添加标记
+     * @param marker
+     * @param sContent
+     * @param isBounced
+     */
+    addMarker: function (marker, sContent, isBounced) {
+        var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+        this.map.addOverlay(marker);
+        //跳跃点
+        if(isBounced){
+            marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+        }
+        marker.addEventListener("click", function () {
+            this.openInfoWindow(infoWindow);
+            //图片加载完毕重绘infowindow
+            document.getElementById('imgDemo').onload = function () {
+                infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+            }
+        });
+    },
+    /**
+     *
+     * @param pointArr
+     * @param color eg:red
+     */
+	addPoint:function(pointArr, color){
 		var polyline = new BMap.Polyline(
 		pointArr,
-		{strokeColor:"red", strokeWeight:6, strokeOpacity:1});
+		{strokeColor:color, strokeWeight:4, strokeOpacity:1});
 		this.map.addOverlay(polyline);		
 	},
-	addLabel:function(pointArr,sContent){
-		var bounds = this.map.getBounds();
+	addLabel:function(pointArr,sContent, isBounced){
 		for(var i = 0;i<pointArr.length;i++){
-			this.addMarker(pointArr[i],sContent[i]);
+			this.addMarker(new BMap.Marker(pointArr[i]),sContent[i], isBounced);
 		}
-	}
+	},
+    removeOverlays: function(){
+        this.map.clearOverlays()
+    }
 };
 
-function getMap(url){
+function getMap2(url){
     // url: "/travel/traveldata/panyu_0_33a24682e1775bc6d5a81ae33834721.json", 
     $.ajax({
          type: "GET",
@@ -73,47 +100,6 @@ function getMap(url){
             oMap.addLabel(pointArr,scontent);
          }
      });
-}
-$(document).ready(function(){
-
-    $('.j-delete').on('click',function(event) {
-        $('.j-map').hide();
-        $('.j-block').hide();
-    });
-
-    $('#condition').each(function(i,cont){
-        $(this).find('.j-price a').on('click',function(){
-            var price = $(this).text();
-            $('#search-price').val(price);
-            $('#search-form').submit();
-        });
-        $(this).find('.j-day a').on('click',function(){
-            var day = $(this).text();
-            day = day.substring(0,day.indexOf("天"));
-            console.log(day);
-            $('#search-day').val(day);
-            $('#search-form').submit();
-        });
-    });
-});
-
-
-function replaceTpl (template, data) {
-    var outPrint = "";
-    for (var i = 0; i < data.length; i++) {
-        var matchs = template.match(/\{[a-zA-Z0-9_]+\}/gi);
-        var temp = "";
-        for (var j = 0; j < matchs.length; j++) {
-            if (temp == "") temp = template;                                                                                                        
-            var re_match = matchs[j].replace(/[\{\}]/gi, "");
-            temp = temp.replace(matchs[j], data[i][re_match]);
-        }
-        outPrint += temp;
-    }
-    return outPrint;
-}
-function debug(info){
-    console.log(info);
 }
 
 
