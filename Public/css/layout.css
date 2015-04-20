@@ -169,14 +169,16 @@ header h1{
     background: rgba(0,0,0,0.8);
 }
 .m-unit{
-    width: 700px;
+    width: 500px;
+    height: 250px;
 }
 .m-detail{
-    width: 380px;
+    width: 280px;
     float: left;
 }
 .m-unit img{
     float: right;
+    width: 200px;
 }
 
 
@@ -187,10 +189,10 @@ header h1{
 .timeitem{margin-top: 20px;margin-left: -20px;}
 .timeline_time{color: #949494; font-size: 12px;}
 .time_icon{ margin-right: 5px;}
-.time_title{ font-size: 20px; line-height: 20px; color: #626262; font-family: "楷体"; font-weight: bold;}
+.time_title{ font-size: 20px; line-height: 20px; color: #ffffff; font-family: "楷体"; font-weight: bold;}
 .timeitem_content{margin:10px 0 20px 30px;width: 90%;}
 .timeitem_descrition{float: right; display: inline; color: #fff; border-top: 1px dashed  #626262; border-bottom: 1px dashed  #626262; width: 100%; overflow: hidden;}
-.timeitem_descrition p{ margin-top: 55px; line-height: 30px; font-size: 16px; letter-spacing: 2px;}
+.timeitem_descrition p{ margin-top: 5px; font-size: 12px; letter-spacing: 1px;}
 .time_more{ margin:400px 0 0 -20px;}
 .time_more_link{font-size: 20px; line-height: 20px; color: #626262; font-family: "楷体"; font-weight: bold; text-decoration: none;}
 

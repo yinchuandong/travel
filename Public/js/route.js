@@ -9,7 +9,7 @@ var Route = {
     guideTpl: [
         '<h3> <%= item.ambiguitySname  %><%= item.maxDay  %>日游  </h3>',
         '<% for(var i = 0;i<item.arrange.length;i++){ %>',
-        '<a href="#day<%= i %>0" class="current-day" alt="<%= i %>"><%= item.arrange[i].curDay %></a>',
+        '<a href="#" class="current-day" alt="<%= i %>"><%= item.arrange[i].curDay %></a>',
         '<% } %>'
     ].join(''),
     routeTpl: [
@@ -21,7 +21,7 @@ var Route = {
                 //'<img src="<%= url %>/Public/images/1.jpg" alt="" class="time_img">',
                 '<img src="<%= url %>/index.php/Index/readImg?url=<%= item[i].list[j].fullUrl %>" alt="" class="time_img">',
                 '<div class="timeitem_descrition">',
-                '<p>前期制作历经两个月的EDDY自导 自演的轻松爆米花剧终于结束了前期 拍摄.在吸取了第零集的失败经验后,初 次拍摄的小团队在前期拍摄中仍然遇到许多困难，庆幸的是他们取得了长足的发展，片源效果也相当不错。</p>',
+                '<p><%= item[i].list[j].moreDesc %></p>',
                 '</div>',
                 '</div>',
                 '</div>',
@@ -34,10 +34,14 @@ var Route = {
         this.$processguide = $processguide;
         this.$items = $items;
         this.adjustMapPos();
-        this.getData(url);
+        this.getRouteJson(url);
     },
 
-    getData: function (url) {
+    /**
+     * step1:请求route的json文件
+     * @param url
+     */
+    getRouteJson: function (url) {
         var self = this;
         var requestUrl = this.baseUrl + url;
         $.ajax({
@@ -56,11 +60,13 @@ var Route = {
 
     bindEvent: function () {
         var self = this;
-        $("#processguide").find("a.current-day").bind("click", function (e) {
+        $("#processguide").find("a.current-day").bind("click", function (ev) {
+            ev.preventDefault();
             //console.log($(this).attr("alt"))
             var curDay = parseInt($(this).attr("alt"));
             oMap.removeOverlays();
             self.arrange(self.routeData, curDay);
+            $(window).scrollTo("#day"+curDay+"0", 1000);
         })
     },
 
@@ -116,22 +122,10 @@ var Route = {
                 oMap.addLabel(pointArr, markLabels, false);
             }
 
-            //设置marker图标为水滴
-            var hotel = dayObj.hotel;
-            //创建小狐狸
-            var pt = new BMap.Point(hotel.lng,hotel.lat-0.03);
-            var hotelMarker = new BMap.Marker(pt, {
-                // 指定Marker的icon属性为Symbol
-                icon: new BMap.Symbol(BMap_Symbol_SHAPE_POINT, {
-                    scale: 2,//图标缩放大小
-                    fillColor: "orange",//填充颜色
-                    fillOpacity: 0.8//填充透明度
-                })
-            });
-
-            var myIcon = new BMap.Icon("http://developer.baidu.com/map/jsdemo/img/fox.gif", new BMap.Size(300,157));
-            var marker2 = new BMap.Marker(pt,{icon:myIcon});  // 创建标注
-            oMap.addMarker(marker2, markLabels[0]);
+            var pt = new BMap.Point(hotel.lng, hotel.lat);
+            var hotelIcon = new BMap.Icon(this.baseUrl+"/Public/images/hotel-icon.png", new BMap.Size(32,32));
+            var hotelMarker = new BMap.Marker(pt,{icon:hotelIcon});  // 创建标注
+            oMap.addMarker(hotelMarker, markLabels[0]);
         }
 
 
