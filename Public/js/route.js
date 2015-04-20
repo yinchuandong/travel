@@ -14,21 +14,23 @@ var Route = {
     ].join(''),
     routeTpl: [
         '<% for(var i = 0;i<item.length;i++){ %>',
-        '<% for(var j = 0;j<item[i].list.length;j++){ %>',
-        '<div class="timeitem clearfix" id="day<%= i %><%= j %>">',
-        '<img class="time_icon" src="<%= url %>/Public/images/timeline_side.png" alt=""><span class="time_title"><%= item[i].curDay %>:<%= item[i].list[j].ambiguitySname %></span>',
-        '<div class="timeitem_content timeitemControl">',
-        '<img src="<%= url %>/Public/images/1.jpg" alt="" class="time_img">',
-        '<div class="timeitem_descrition">',
-        '<p>前期制作历经两个月的EDDY自导 自演的轻松爆米花剧终于结束了前期 拍摄.在吸取了第零集的失败经验后,初 次拍摄的小团队在前期拍摄中仍然遇到许多困难，庆幸的是他们取得了长足的发展，片源效果也相当不错。</p>',
-        '</div>',
-        '</div>',
-        '</div>',
-        '<% } %>',
+            '<% for(var j = 0;j<item[i].list.length;j++){ %>',
+                '<div class="timeitem clearfix" id="day<%= i %><%= j %>">',
+                '<img class="time_icon" src="<%= url %>/Public/images/timeline_side.png" alt=""><span class="time_title"><%= item[i].curDay %>:<%= item[i].list[j].ambiguitySname %></span>',
+                '<div class="timeitem_content timeitemControl">',
+                //'<img src="<%= url %>/Public/images/1.jpg" alt="" class="time_img">',
+                '<img src="<%= url %>/index.php/Index/readImg?url=<%= item[i].list[j].fullUrl %>" alt="" class="time_img">',
+                '<div class="timeitem_descrition">',
+                '<p>前期制作历经两个月的EDDY自导 自演的轻松爆米花剧终于结束了前期 拍摄.在吸取了第零集的失败经验后,初 次拍摄的小团队在前期拍摄中仍然遇到许多困难，庆幸的是他们取得了长足的发展，片源效果也相当不错。</p>',
+                '</div>',
+                '</div>',
+                '</div>',
+            '<% } %>',
         '<% } %>'
     ].join(''),
     routeData: null, //ajax请求的异步数据
     init: function (url, $processguide, $items) {
+        oMap.init();
         this.$processguide = $processguide;
         this.$items = $items;
         this.adjustMapPos();
@@ -55,7 +57,7 @@ var Route = {
     bindEvent: function () {
         var self = this;
         $("#processguide").find("a.current-day").bind("click", function (e) {
-            console.log($(this).attr("alt"))
+            //console.log($(this).attr("alt"))
             var curDay = parseInt($(this).attr("alt"));
             oMap.removeOverlays();
             self.arrange(self.routeData, curDay);
@@ -72,7 +74,7 @@ var Route = {
         clng /= data.sceneryList.length;
         clat /= data.sceneryList.length;
         var midPoint = new BMap.Point(clng, clat);
-        oMap.init(midPoint);
+        oMap.setCenter(midPoint);
 
         //arrange routes
         var arrange = data.arrange;
@@ -113,6 +115,23 @@ var Route = {
             }else{
                 oMap.addLabel(pointArr, markLabels, false);
             }
+
+            //设置marker图标为水滴
+            var hotel = dayObj.hotel;
+            //创建小狐狸
+            var pt = new BMap.Point(hotel.lng,hotel.lat-0.03);
+            var hotelMarker = new BMap.Marker(pt, {
+                // 指定Marker的icon属性为Symbol
+                icon: new BMap.Symbol(BMap_Symbol_SHAPE_POINT, {
+                    scale: 2,//图标缩放大小
+                    fillColor: "orange",//填充颜色
+                    fillOpacity: 0.8//填充透明度
+                })
+            });
+
+            var myIcon = new BMap.Icon("http://developer.baidu.com/map/jsdemo/img/fox.gif", new BMap.Size(300,157));
+            var marker2 = new BMap.Marker(pt,{icon:myIcon});  // 创建标注
+            oMap.addMarker(marker2, markLabels[0]);
         }
 
 

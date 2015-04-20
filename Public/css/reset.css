@@ -47,13 +47,13 @@ a{
 
 .main{
     float: right;
-    width: 400px;
+    width: 300px;
 }
 
 .side{
     float: left;
 
-    width: 600px;
+    /*width: 700px;*/
 }
 
 .nav{

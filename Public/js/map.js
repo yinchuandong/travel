@@ -7,7 +7,7 @@ var oMap = {
 	map:null,
     color:['red','blue','green', 'yellow', 'purple','black', '#626262'],
 
-	init:function(point){	
+	init:function(){
 		this.map = new BMap.Map("j-allmap");
 		//添加标注
 		this.sTemplate ="<div class='clearfix m-unit'><div class='m-detail'>"+
@@ -15,22 +15,25 @@ var oMap = {
                 "<p class='intro'>{moreDesc}</p><h4>酒店</h4>";
         this.sTemplate2 ="<p><span>{hotelName}</span><span>价格：{price} 元</span></p><p><span>电话：{phone}</span></p>";
         this.sTemplate3 ="</div><img style='float:right;margin:4px' id='imgDemo' src='http://127.0.0.1/travel/index.php/Index/readImg?url={fullUrl}'/></div>";
-		this.map.centerAndZoom(point, 11);
 		//启用滚轮放大缩小
 		this.map.enableScrollWheelZoom();    
 		this.map.enableContinuousZoom();
-        var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
-        this.map.addControl(top_left_navigation);
+        var topLeftNavigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
+        this.map.addControl(topLeftNavigation);
     },
+
+    setCenter: function(point){
+        this.map.centerAndZoom(point, 11);
+    },
+
     /**
      * 添加标记
-     * @param point
+     * @param marker
      * @param sContent
      * @param isBounced
      */
-    addMarker: function (point, sContent, isBounced) {
+    addMarker: function (marker, sContent, isBounced) {
         var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
-        var marker = new BMap.Marker(point);
         this.map.addOverlay(marker);
         //跳跃点
         if(isBounced){
@@ -57,7 +60,7 @@ var oMap = {
 	},
 	addLabel:function(pointArr,sContent, isBounced){
 		for(var i = 0;i<pointArr.length;i++){
-			this.addMarker(pointArr[i],sContent[i], isBounced);
+			this.addMarker(new BMap.Marker(pointArr[i]),sContent[i], isBounced);
 		}
 	},
     removeOverlays: function(){
