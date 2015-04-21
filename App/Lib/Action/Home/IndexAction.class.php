@@ -8,22 +8,38 @@ class IndexAction extends Action {
     }
     
 	public function search(){
-    	$key = $this->_get("key");
-    //	$httpUtil = new HttpUtil("http://192.168.233.21:8080/Traveljsp/search.jsp?key=".$key);
-    //	$result = $httpUtil->getContent();
-    //	//第二个参数指定为true可以返回一个数组
-    //	$result = json_decode($result, true);
-    //	$data = $result["data"];
-    //	$sidArr = array();
-    //	foreach ($data as $row){
-    //		$sidArr[] = $row["sid"];
-    //	}
-    //	$model = new SceneryModel();
-    //	$arr = $model->getSceneryList($sidArr);
-    //	$this->assign("resultArr", $arr);
-    
-    	$this->assign("title", "路线搜索");
-    	
+    	$city = $this->_get("key");
+    	$price = $this->_get("price");
+    	$day = $this->_get("day");
+    	$orderby = $this->_get("orderby");
+    	$sort = $this->_get("sort");
+    	if (empty($orderby)) {
+    		$orderby = 'hotness';
+    	}
+    	if ($sort != 'asc') {
+    		$sort = 'desc';
+    	}
+    	 
+    	$priceArr = explode("-", $price);
+    	if (count($priceArr) == 2){
+    		$downPrice = $priceArr[0];
+    		$upPrice = $priceArr[1];
+    	}else{
+    		$downPrice = 300;
+    		$upPrice = 500;
+    	}
+    	 
+    	if (empty($day)) {
+    		$day = 3;
+    	}
+    	$model = new RouteModel();
+    	//     	$city="广州";
+    	//     	$downPrice=200;
+    	//     	$upPrice=300;
+    	//     	$day=3;
+    	$routeList = $model->getRoute($city, $downPrice, $upPrice, $day, $orderby, $sort);
+    	$this->assign("routeList", $routeList);
+    	$this->assign("title", "路线搜索");   	
     	$this->display("Home:Index:search");
     }
     
@@ -78,11 +94,13 @@ class IndexAction extends Action {
     		$day = 3;
     	}
     	$model = new RouteModel();
-//     	$city="惠州";
+//     	$city="广州";
 //     	$downPrice=200;
 //     	$upPrice=300;
 //     	$day=3;
     	$routeList = $model->getRoute($city, $downPrice, $upPrice, $day, $orderby, $sort);
+    	var_dump($routeList);
+    	die;
     	$this->assign("routeList", $routeList);
 //     	var_dump($routeList);
     	$this->display("Home:Index:routeResult");
