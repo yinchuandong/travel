@@ -3,6 +3,7 @@ class IndexAction extends Action {
 	public function index(){
 // 		$this->redirect("Home/Index/search");
 // 		import("ORG.HttpUtil");
+		
     	$this->display("Home:Index:index");
     }
     

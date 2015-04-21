@@ -3,7 +3,7 @@
  */
 
 var Route = {
-    baseUrl: 'http://127.0.0.1/travel/',
+    baseUrl: gl_baseUrl,
     $processguide: $("#processguide"),
     $items: $("#items"),
     guideTpl: [
@@ -43,7 +43,7 @@ var Route = {
      */
     getRouteJson: function (url) {
         var self = this;
-        var requestUrl = this.baseUrl + url;
+        var requestUrl = this.baseUrl  + "/" + url;
         $.ajax({
             url: requestUrl,
             dataType: "json",
