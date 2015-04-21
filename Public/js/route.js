@@ -126,7 +126,6 @@ var Route = {
             var hotelIcon = new BMap.Icon(this.baseUrl+"/Public/images/hotel-icon.png", new BMap.Size(32,32));
             var hotelMarker = new BMap.Marker(pt,{icon:hotelIcon});  // 创建标注
             oMap.addMarker(hotelMarker, markLabels[0]);
-            console.log(hotel)
         }
 
 
