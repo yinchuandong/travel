@@ -60,18 +60,25 @@
 				<!--<a href="#">价格</a>-->
 				<!--<a href="#">距离</a>-->
 			<!--</p>-->
-
-			<div class="r-unit clearfix">
-				<h2 class="r-title clearfix"><span class="r-name">广州三日游    ￥498 </span><div class="r-love"><i class="love"></i><span>98</span></div> <div class="star"><i class="star-gold star7"></i></div> <span>4.5</span></h2>
-				<div class="r-detail clearfix">
-					<div class="r-route">
-						<p>第一天：青岛火车站 -栈桥-崂山 -劈柴院-五四广场 -奥帆中心 -极地海洋世界 -啤酒街</p>
-						<p>第二天：青岛火车站 -栈桥-崂山 -劈柴院-五四广场 -奥帆中心 -极地海洋世界 -啤酒街</p>
-						<p>第三天：青岛火车站 -栈桥-崂山 -劈柴院-五四广场 -奥帆中心 -极地海洋世界 -啤酒街</p>
+			
+			<volist name="routeList" id="row">
+				<div class="r-unit clearfix">
+					<h2 class="r-title clearfix"><span class="r-name">{$row.sname}{$row.maxDay}天游    ￥{$row.sumPrice} </span><div class="r-love"><i class="love"></i><span>{$row.viewCount}</span></div> <div class="star"><i class="star-gold star7"></i></div> <span>4.5</span></h2>
+					<div class="r-detail clearfix">
+						<div class="r-route">
+							<php>
+								$detail=json_decode($row['arrange'], true);
+								//$detail = $row['arrange'];
+								//var_dump($detail);die;
+							</php>
+							<volist name="detail" id="d">
+								<p>{$d.curDay}</p>
+							</volist>
+						</div>
+						<div class="r-img"><img src="__IMG__/2.jpg" alt=""></div>
 					</div>
-					<div class="r-img"><img src="__IMG__/2.jpg" alt=""></div>
 				</div>
-			</div>
+			</volist>
 			<div class="r-unit clearfix">
 
 

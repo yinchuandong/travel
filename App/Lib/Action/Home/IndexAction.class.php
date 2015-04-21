@@ -8,6 +8,7 @@ class IndexAction extends Action {
     }
     
 	public function search(){
+		error_reporting(E_ALL);
     	$city = $this->_get("key");
     	$price = $this->_get("price");
     	$day = $this->_get("day");
@@ -38,6 +39,9 @@ class IndexAction extends Action {
     	//     	$upPrice=300;
     	//     	$day=3;
     	$routeList = $model->getRoute($city, $downPrice, $upPrice, $day, $orderby, $sort);
+//     	var_dump(json_decode($routeList[0]['arrange']));
+//     	die;
+
     	$this->assign("routeList", $routeList);
     	$this->assign("title", "路线搜索");   	
     	$this->display("Home:Index:search");
