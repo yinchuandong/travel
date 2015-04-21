@@ -1,98 +1,24 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>搜索引擎</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
-        <meta name="viewport"  content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
-        <link rel="stylesheet" href="__CSS__/reset.css" />
-        <link rel="stylesheet" href="__CSS__/layout.css" />
-        <script type="text/javascript" src="__JS__/jquery.js"> </script>
-        <script type="text/javascript" src="__JS__/util.js"> </script>
-        <script type="text/javascript" src="__JS__/lazyload.js"> </script>
-	</head>
+<include file="Public:header" />
+
+<div class="wrapper">
+    <div class="container">
+        <div class="search">
+            <!--<form id="search-form" action="{:U('Index/search')}" method="get">-->
+                <!--<input type="text" id="search-text" name="key" placeholder="广州" autocomplete="off" class="inputText"/>-->
+
+                <!--<a href="{:U('Index/search')}" id="search-city" class="btn">搜路线</a>-->
+                <!--<a href="{:U('Index/route')}" id="search-route" class="btn">看详请</a>-->
+                <!--<ul id="tips-ul" class="tips-dialog">-->
+                <!--</ul>-->
+            <!--</form>-->
+
+            <h2>API接口测试</h2>
+            <a href="{:U('Index/search')}" id="search-city" class="btn"><h3>搜路线</h3></a>
+            <a href="{:U('Index/route')}" id="search-route" class="btn"><h3>看详请</h3></a>
+
+        </div>
+    </div>
+</div>
 
 
-<script type="text/javascript">
-	
-$(document).ready(function(){
-	$('#search-text').keyup(function(){
-		var key = $(this).val();
-		if (key == null || key == "") {
-			$("#tips-ul").hide();
-			return ;
-		};
-		$("#tips-ul").slideDown();
-		console.log(key);
-		ajaxGet(key);
-	});
-
-	$('#search-city').click(function(e){
-		var form = $("#search-form");
-		form.attr('action', "{:U('Index/search')}");
-		form.submit();
-	});
-	
-	$('#search-route').click(function(e){
-		var form = $("#search-form");
-		form.attr('action', "{:U('Index/searchRoute')}");
-		form.submit();
-	});
-
-	$(document).keydown(function(e){
-		if (e.keyCode == 13) {
-			$("#search-form").submit();
-		};
-	});
-});
-
-function ajaxGet(key){
-	$.ajax({
-		method:'get',
-		data:{'key': key},
-		url:'{:U("Index/suggest")}',
-		dataType:'json',
-		success:function(result){
-			console.log(result);
-			var data = result.data;
-			// console.log(result.info);
-			if (data.length > 0) {
-				var elemStr = replaceTpl("<li>{word}</li>",data);
-				$("#tips-ul").empty();
-				$("#tips-ul").append(elemStr);
-				bindUlEvent();
-			}
-		}
-	});
-}
-
-
-function bindUlEvent(){
-	$("#tips-ul li").unbind("click");
-	$("#tips-ul li").bind("click", function(e){
-		var key = $(this).text();
-		$("#search-text").val(key);
-		$("#search-form").submit();
-	});
-	
-}
-</script>
-<body>
-	<div class="wrapper">
-         <div class="container">
-	             <div class="search">
-	             <form id="search-form" action="{:U('Index/search')}" method="get">
-	                 <input type="text" id="search-text" name="key"  placeholder="示例" autocomplete="off" class="inputText"/>
-	                 
-	                 <a href="#" id="search-city" class="btn">搜景点</a>
-	                 <a href="#" id="search-route" class="btn">搜路线</a>
-	                 <ul id="tips-ul" class="tips-dialog">
-					</ul>
-				</form>
-	             </div>
-         </div>
-     </div>
-	<div class="serch">
-
-		
-
-<include file="Public:footer" />
+<include file="Public:footer"/>
