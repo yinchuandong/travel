@@ -3,7 +3,7 @@
  */
 
 var Route = {
-    baseUrl: 'http://127.0.0.1/travel/',
+    baseUrl: gl_baseUrl,
     $processguide: $("#processguide"),
     $items: $("#items"),
     guideTpl: [
@@ -43,7 +43,7 @@ var Route = {
      */
     getRouteJson: function (url) {
         var self = this;
-        var requestUrl = this.baseUrl + url;
+        var requestUrl = this.baseUrl  + "/" + url;
         $.ajax({
             url: requestUrl,
             dataType: "json",
@@ -126,6 +126,7 @@ var Route = {
             var hotelIcon = new BMap.Icon(this.baseUrl+"/Public/images/hotel-icon.png", new BMap.Size(32,32));
             var hotelMarker = new BMap.Marker(pt,{icon:hotelIcon});  // 创建标注
             oMap.addMarker(hotelMarker, markLabels[0]);
+            console.log(hotel)
         }
 
 

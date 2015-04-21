@@ -1,9 +1,9 @@
 <?php
 class IndexAction extends Action {
 	public function index(){
-        echo 2;die;
-		$this->redirect("Home/Index/search");
-		import("ORG.HttpUtil");
+// 		$this->redirect("Home/Index/search");
+// 		import("ORG.HttpUtil");
+		
     	$this->display("Home:Index:index");
     }
     
