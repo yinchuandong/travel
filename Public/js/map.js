@@ -9,12 +9,6 @@ var oMap = {
 
 	init:function(){
 		this.map = new BMap.Map("j-allmap");
-		//添加标注
-		this.sTemplate ="<div class='clearfix m-unit'><div class='m-detail'>"+
-                "<h3>{sname}<span class='price'>价格：{price} 元</span></h3> "+
-                "<p class='intro'>{moreDesc}</p><h4>酒店</h4>";
-        this.sTemplate2 ="<p><span>{hotelName}</span><span>价格：{price} 元</span></p><p><span>电话：{phone}</span></p>";
-        this.sTemplate3 ="</div><img style='float:right;margin:4px' id='imgDemo' src='http://127.0.0.1/travel/index.php/Index/readImg?url={fullUrl}'/></div>";
 		//启用滚轮放大缩小
 		this.map.enableScrollWheelZoom();    
 		this.map.enableContinuousZoom();
@@ -42,7 +36,7 @@ var oMap = {
         marker.addEventListener("click", function () {
             this.openInfoWindow(infoWindow);
             //图片加载完毕重绘infowindow
-            document.getElementById('imgDemo').onload = function () {
+            document.getElementById('coverImg').onload = function () {
                 infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
             }
         });

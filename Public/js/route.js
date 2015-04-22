@@ -12,6 +12,7 @@ var Route = {
         '<a href="#" class="current-day" alt="<%= i %>"><%= item.arrange[i].curDay %></a>',
         '<% } %>'
     ].join(''),
+    //时间轴路线
     routeTpl: [
         '<% for(var i = 0;i<item.length;i++){ %>',
             '<% for(var j = 0;j<item[i].list.length;j++){ %>',
@@ -28,6 +29,20 @@ var Route = {
             '<% } %>',
         '<% } %>'
     ].join(''),
+    //添加景点标注
+    mapSceneTpl: ['<div class="clearfix m-unit"><div class="m-detail">',
+        '<h3><%= sname %><span class="price">价格：<%= price %> 元</span></h3> ',
+        '<p class="intro"><%= moreDesc %></p>',
+        '</div><img id="coverImg" style="float:right;margin:4px"  src="http://127.0.0.1/travel/index.php/Index/readImg?url=<%= fullUrl %>"/></div>'
+    ].join(''),
+
+    //添加景点标注
+    mapHotelTpl: ['<div class="clearfix m-unit"><div class="m-detail">',
+        '<h3><%= hotelName %><span class="price">价格：<%= price %> 元</span></h3> ',
+        '<p class="intro"><%= hotelAddress %></p>',
+        '</div><img id="coverImg" style="float:right;margin:4px"  src="http://127.0.0.1/travel/index.php/Index/readImg?url=<%= pic %>"/></div>'
+    ].join(''),
+
     routeData: null, //ajax请求的异步数据
     init: function (url, $processguide, $items) {
         oMap.init();
@@ -101,11 +116,10 @@ var Route = {
 
             for (var j = 0; j < lenScene; j++) {
                 var point = new BMap.Point(sceneList[j].lng, sceneList[j].lat);
-                var content = replaceTpl(oMap.sTemplate, [sceneList[j]]);
-                var img = replaceTpl(oMap.sTemplate3, [sceneList[j]]);
-                var div = content + img;
+                var div = tmpl(this.mapSceneTpl, sceneList[j]);
                 pointArr.push(point);
                 markLabels.push(div);
+
             }
 
             //重新赋值上一天的结束点
@@ -125,8 +139,8 @@ var Route = {
             var pt = new BMap.Point(hotel.lng, hotel.lat);
             var hotelIcon = new BMap.Icon(this.baseUrl+"/Public/images/hotel-icon.png", new BMap.Size(32,32));
             var hotelMarker = new BMap.Marker(pt,{icon:hotelIcon});  // 创建标注
-            oMap.addMarker(hotelMarker, markLabels[0]);
-            console.log(hotel)
+            var hotelTpl = tmpl(this.mapHotelTpl, hotel);
+            oMap.addMarker(hotelMarker, hotelTpl);
         }
 
 

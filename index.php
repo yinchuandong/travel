@@ -1,5 +1,4 @@
 <?php
-define('APP_DEBUG',true);
 define('THINK_PATH', './Core/');
 
 // 定义项目名称和路径
