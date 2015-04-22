@@ -68,7 +68,8 @@ class IndexAction extends Action {
 
     public function suggest(){
     	$key = $this->_get("key");
-    	$httpUtil = new HttpUtil("http://192.168.233.21:8080/Traveljsp/suggest.jsp?key=".$key);
+    	import("ORG.HttpUtil");
+    	$httpUtil = new HttpUtil("http://127.0.0.1:8080/Traveljsp/suggest.jsp?key=".$key);
     	$data = $httpUtil->getContent();
 		echo $data;
     }
