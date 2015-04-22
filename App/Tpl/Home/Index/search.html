@@ -9,7 +9,8 @@
 				<input type="text" id="search-text" name="key" placeholder="示例" autocomplete="off" class="inputText"/>
 				<input type="hidden" id="search-day" name="day" value="3" />
 				<input type="hidden" id="search-price" name="price" value="300-600" />
-				<a href="#" id="search-route" class="my-btn">搜路线</a>
+				<input type="hidden" id="search-orderby" name="orderby" value="hotness">
+                <a href="#" id="search-route" class="my-btn search-btn">搜路线</a>
 				<ul id="tips-ul" class="tips-dialog">
 				</ul>
 			</form>
@@ -17,39 +18,38 @@
 		</div>
 		<div id="condition" class="condition">
 			<h3>筛选条件</h3>
-			<p class='condition-day'>
+			<div class='condition-day clearfix'>
 				<span>天数： </span>
 				<ul class="nav nav-pills">
 					<li class="active">
-						<a href="#">不限</a>
+						<a href="#" day="-1" class="daya">不限</a>
 					</li>
-					<li><a href="#">3天</a></li>
-					<li><a href="#">4天</a></li>
-					<li><a href="#">5天</a></li>
+					<li><a href="#" day="3">3天</a></li>
+					<li><a href="#" day="4">4天</a></li>
+					<li><a href="#" day="5">5天</a></li>
 				</ul>
-			</p>
-			<p class='condition-price'>
+			</div>
+
+			<div class='condition-price clearfix'>
 				<span>预算： </span>
 				<ul class="nav nav-pills">
 					<li class="active">
-						<a href="#">不限</a>
+						<a href="#" price="-1">不限</a>
 					</li>
-					<li><a href="#">0-300</a></li>
-					<li><a href="#">300-600</a></li>
-					<li><a href="#">600-900</a></li>
-					<li><a href="#">900-1200</a></li>
+					<li><a href="#" price="0-300">0-300</a></li>
+					<li><a href="#" price="300-600">300-600</a></li>
+					<li><a href="#" price="600-900">600-900</a></li>
+					<li><a href="#" price="900-1200">900-1200</a></li>
 				</ul>
-			</p>
-			<p class='condition-price'>
+			</div>
+			<div class='condition-orderby clearfix'>
 				<span>排序： </span>
 				<ul class="nav nav-pills">
-					<li class="active">
-						<a href="#">热度</a>
-					</li>
-					<li><a href="#">价格</a></li>
-					<li><a href="#">距离</a></li>
+					<li class="active"><a href="#" order="hotness">热度</a></li>
+					<li><a href="#" order="sumPrice">价格</a></li>
+					<li><a href="#" order="distance">距离</a></li>
 				</ul>
-			</p>
+			</div>
 		</div>
 
 		<div class="routediv">
@@ -64,6 +64,7 @@
 					<h2 class="r-title clearfix"><span class="r-name">{$row.sname}{$row.maxDay}天游    ￥{$row.sumPrice} </span><div class="r-love"><i class="love"></i><span>{$row.viewCount}</span></div> <div class="star"><i class="star-gold star7"></i></div> <span>4.5</span></h2>
 					<div class="r-detail clearfix">
 						<div class="r-route">
+
 							<volist name="row.arrange" id="arg">
 								<p>{$arg.curDay}：
 								<volist name="arg.list" id="place">
@@ -76,73 +77,12 @@
 					</div>
 				</div>
 			</volist>
-
 		</div>
-
 	</div>
-
 	<div class="bg"></div>
-
 </div>
-<script type="text/javascript" src="__JS__/lazyload.js"> </script>
+<script type="text/javascript" src="__JS__/util.js"> </script>
 <script type="text/javascript" src="__JS__/search.js"></script>
-<script type="text/javascript">
 
-	window.onload = function(){
-		$('.lazy').lazyload({"threshold":0});
-	}
-	$(document).ready(function(){
-		$('#search-text').keyup(function(){
-			var key = $(this).val();
-			if (key == null || key == "") {
-				$("#tips-ul").hide();
-				return ;
-			};
-			$("#tips-ul").slideDown();
-			console.log(key);
-			ajaxGet(key);
-		});
-
-		$('#search-city').click(function(e){
-			$("#search-form").submit();
-		});
-
-		$(document).keydown(function(e){
-			if (e.keyCode == 13) {
-				$("#search-form").submit();
-			};
-		});
-	});
-
-	function ajaxGet(key){
-		$.ajax({
-			method:'get',
-			data:{'key': key},
-			url:'{:U("Index/suggest")}',
-			dataType:'json',
-			success:function(result){
-				console.log(result);
-				var data = result.data;
-				// console.log(result.info);
-				if (data.length > 0) {
-					var elemStr = replaceTpl("<li>{word}</li>",data);
-					$("#tips-ul").empty();
-					$("#tips-ul").append(elemStr);
-					bindUlEvent();
-				}
-			}
-		});
-	}
-
-
-	function bindUlEvent(){
-		$("#tips-ul li").unbind("click");
-		$("#tips-ul li").bind("click", function(e){
-			var key = $(this).text();
-			$("#search-text").val(key);
-			$("#search-form").submit();
-		});
-	}
-</script>
 
 <include file="Public:footer" />
