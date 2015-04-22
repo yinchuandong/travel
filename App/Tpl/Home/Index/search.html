@@ -72,7 +72,14 @@
 								//var_dump($detail);die;
 							</php>
 							<volist name="detail" id="d">
-								<p>{$d.curDay}</p>
+								<p>{$d.curDay}：343
+								<php>
+									$daylist = $d["list"];
+								</php>
+								<volist name="daylist" id="place">
+									$place.ambiguitySname -
+								</volist> 
+								</p>
 							</volist>
 						</div>
 						<div class="r-img"><img src="__IMG__/2.jpg" alt=""></div>
