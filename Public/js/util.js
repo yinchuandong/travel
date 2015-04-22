@@ -20,6 +20,11 @@ function replaceTpl(template,data){
     }  
     return outPrint;  
 }
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return decodeURIComponent(r[2]); return null;
+}
 function tmpl(str , data){
     var fn = !/\W/.test(str) ? cache[str] = cache[str] ||
         tmpl(document.getElementById(str).innerHTML) :        // Generate a reusable function that will serve as a template

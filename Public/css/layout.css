@@ -73,6 +73,13 @@
 #condition{
     margin: 20px 0;
 }
+.condition-day span,.condition-price span, .condition-orderby span{
+    float: left;
+    height: 40px;
+}
+.condition-day ul,.condition-price ul, .condition-orderby ul{
+    float: left;
+}
 #condition a ,.sort a,.route,.p-intro{
     /*color: #0d63ed;*/
     /*height:20px;*/
