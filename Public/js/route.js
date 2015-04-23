@@ -27,20 +27,29 @@ var Route = {
                 '</div>',
                 '</div>',
             '<% } %>',
+            '<div class="timeitem clearfix" id="hotel<%= i %>">',
+            '<img class="time_icon" src="<%= url %>/Public/images/timeline_side.png" alt=""><span class="time_title">酒店：<%= item[i].hotel.hotelName %> ￥<%= item[i].hotel.price %></span>',
+            '<div class="timeitem_content timeitemControl">',
+            '<img src="<%= url %>/index.php/Index/readImg?url=<%= item[i].hotel.pic %>" alt="" class="time_img">',
+            '<div class="timeitem_descrition">',
+            '<p><%= item[i].hotel.hotelAddress %></p>',
+            '</div>',
+            '</div>',
+            '</div>',
         '<% } %>'
     ].join(''),
     //添加景点标注
     mapSceneTpl: ['<div class="clearfix m-unit"><div class="m-detail">',
-        '<h3><%= sname %><span class="price">价格：<%= price %> 元</span></h3> ',
+        '<h3><%= sname %><span class="price">价格：<%= price %></span></h3> ',
         '<p class="intro"><%= moreDesc %></p>',
         '</div><img id="coverImg" style="float:right;margin:4px"  src="<%= gl_baseUrl %>/index.php/Index/readImg?url=<%= fullUrl %>"/></div>'
     ].join(''),
 
-    //添加景点标注
+    //添加酒店标注
     mapHotelTpl: ['<div class="clearfix m-unit"><div class="m-detail">',
-        '<h3><%= hotelName %><span class="price">价格：<%= price %> 元</span></h3> ',
+        '<h3><%= hotelName %><span class="price"> ￥<%= price %> 元</span></h3> ',
         '<p class="intro"><%= hotelAddress %></p>',
-        '</div><img id="coverImg" style="float:right;margin:4px"  src="<%= gl_baseUrl %>/Public/images/hotel.jpeg"/></div>'
+        '</div><img id="coverImg" style="float:right;margin:4px"  src="<%= gl_baseUrl %>/index.php/Index/readImg?url=<%= pic %>"/></div>'
     ].join(''),
 
     routeData: null, //ajax请求的异步数据

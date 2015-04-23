@@ -19,8 +19,10 @@ var Search = {
         $condition.find("[day="+day+"]").parent().addClass('active');
         $condition.find("[price="+price+"]").parent().addClass('active');
         $condition.find("[order="+orderby+"]").parent().addClass('active');
-
-
+        $("#search-text").val(key);
+        $("#search-day").val(day);
+        $('#search-price').val(price);
+        $("#search-orderby").val(orderby);
         $condition.on("click",".condition-day a",function(){
             var day = $(this).attr("day");
             $("#search-day").val(day);
