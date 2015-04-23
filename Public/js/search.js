@@ -8,17 +8,28 @@ var Search = {
     },
     bindEvent:function(){
         var self = this;
-        var key = getQueryString("key");
-        var day = getQueryString("day");
-        var price = getQueryString("price");
-        var orderby =  getQueryString("orderby");
+        var params = getQuery();
+        var key = params["key"];
+        var day = params["day"];
+        var price = params["price"];
+        var orderby =  params["orderby"];
 
-        $("#condition li").removeClass('active');
+        //$("#condition li").removeClass('active');
         var $condition = $("#condition");
 
-        $condition.find("[day="+day+"]").parent().addClass('active');
-        $condition.find("[price="+price+"]").parent().addClass('active');
-        $condition.find("[order="+orderby+"]").parent().addClass('active');
+        if(day != null && day != ""){
+            $condition.find(".condition-day li").removeClass('active');
+            $condition.find("[day="+day+"]").parent().addClass('active');
+        }
+        if(price != null && price != ""){
+            $condition.find(".condition-price li").removeClass('active');
+            $condition.find("[price="+price+"]").parent().addClass('active');
+        }
+        if(orderby != null && orderby != ""){
+            $condition.find(".condition-orderby li").removeClass('active');
+            $condition.find("[orderby="+orderby+"]").parent().addClass('active');
+        }
+
         $("#search-text").val(key);
         $("#search-day").val(day);
         $('#search-price').val(price);
@@ -34,7 +45,7 @@ var Search = {
             $("#search-route").trigger("click");
         })
         .on("click",".condition-orderby a",function(){
-            var sort = $(this).attr("order");
+            var sort = $(this).attr("orderby");
             $("#search-orderby").val(sort);
             $("#search-route").trigger("click");
         });

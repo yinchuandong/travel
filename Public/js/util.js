@@ -25,6 +25,23 @@ function getQueryString(name) {
     var r = window.location.search.substr(1).match(reg);
     if (r != null) return decodeURIComponent(r[2]); return null;
 }
+
+function getQuery(){
+    var url = window.location.search.substr(1);
+    var urlArr = url.split('&');
+    var len = urlArr.length;
+    var params = [];
+    for(var i = 0; i < len; i++){
+        var keyArr = urlArr[i].split('=');
+        if(keyArr.length == 2){
+            params[keyArr[0]] = decodeURIComponent(keyArr[1]);
+        }else{
+            params[keyArr[0]] = null;
+        }
+    }
+    return params;
+}
+
 function tmpl(str , data){
     var fn = !/\W/.test(str) ? cache[str] = cache[str] ||
         tmpl(document.getElementById(str).innerHTML) :        // Generate a reusable function that will serve as a template
