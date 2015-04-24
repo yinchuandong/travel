@@ -20,13 +20,13 @@ class IndexAction extends Action {
     		$sort = 'desc';
     	}
     	 
-    	$downPrice = '0';
-    	$upPrice = '20000';
+    	$minPrice = '0';
+    	$maxPrice = '20000';
     	if($price != '-1'){
     		$priceArr = explode('-', $price);
     		if (count($priceArr) == 2){
-    			$downPrice = $priceArr[0];
-    			$upPrice = $priceArr[1];
+    			$minPrice = $priceArr[0];
+    			$maxPrice = $priceArr[1];
     		}
     	}
     	
@@ -35,7 +35,7 @@ class IndexAction extends Action {
     	}
     	
     	$model = new RouteModel();
-    	$routeList = $model->getRoute($city, $downPrice, $upPrice, $day, $orderby, $sort);
+    	$routeList = $model->getRoute($city, $minPrice, $maxPrice, $day, $orderby, $sort);
     	
     	$len = count($routeList);
     	for($i = 0; $i < $len; $i++){

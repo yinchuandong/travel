@@ -6,10 +6,10 @@ class RouteModel extends Model{
 		parent::__construct();
 	}
 	
-	public function getRoute($city, $downPrice, $upPrice, $day, $orderBy='hotness', $sort='desc'){
+	public function getRoute($city, $minPrice, $maxPrice, $day, $orderBy='hotness', $sort='desc'){
 		$where = array(
 			'sname' => $city,
-			'sumPrice' => array(array('EGT',$downPrice), array('ELT', $upPrice)),
+			'sumPrice' => array(array('EGT',$minPrice), array('ELT', $maxPrice)),
 		);
 		if($day != '-1'){
 			$where['maxDay'] = $day;
