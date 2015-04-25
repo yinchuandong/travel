@@ -38,16 +38,33 @@ class IndexAction extends Action {
     	$routeList = $model->getRoute($city, $minPrice, $maxPrice, $day, $orderby, $sort);
     	
     	$len = count($routeList);
-    	for($i = 0; $i < $len; $i++){
-    		$routeList[$i]['arrange'] = json_decode($routeList[$i]['arrange'], true);
+    	if($len > 0){
+    		for($i = 0; $i < $len; $i++){
+    			$routeList[$i]['arrange'] = json_decode($routeList[$i]['arrange'], true);
+    		}
+    	}else{
+    		import('ORG.HttpUtil');
+    		$url = "http://127.0.0.1:8080/Traveljsp/search.jsp?";
+    		$url .= "key=$city&minPrice=$minPrice&maxPrice=$maxPrice&day=$day&orderby=$orderby&sort=$sort";
+    		$util = new HttpUtil($url);
+    		$resultJson = json_decode($util->getContent(), true);
+    		$routeList = $resultJson['data'];
+//     		var_dump($routeList);
+//     		die;
     	}
+    	
     	$this->assign('routeList', $routeList);
     	$this->assign('title', '路线搜索');   	
     	$this->display('Home:Index:search');
     }
     
     public function route(){
+    	$routeFile = $this->_get("route");
+    	if($routeFile == ''){
+    		$routeFile = 'guangzhou/3_0_96f564316ba8ffd5edcbf6fdd8fc5d3.json';
+    	}
     	$this->assign('title', '路线详情');
+    	$this->assign('routeFile', $routeFile);
     	$this->display('Home:Index:route');
     }
 

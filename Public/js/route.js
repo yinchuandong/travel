@@ -165,8 +165,3 @@ var Route = {
     }
 
 };
-
-$(document).ready(function () {
-    var url = 'routes/guangzhou/' + "3_0_96f564316ba8ffd5edcbf6fdd8fc5d3.json";
-    Route.init(url, $("#processguide"), $("#items"));
-});
