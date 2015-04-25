@@ -197,12 +197,13 @@ header h1{
 .timeline_time{color: #949494; font-size: 12px;}
 .time_icon{ margin-right: 5px;}
 .time_title{ font-size: 20px; line-height: 20px; color: #ffffff; font-family: "楷体"; font-weight: bold;}
+.time_title2{margin-left: 30px;}
 .timeitem_content{margin:10px 0 20px 30px;width: 90%;}
 .timeitem_descrition{float: right; display: inline; color: #fff; border-top: 1px dashed  #626262; border-bottom: 1px dashed  #626262; width: 100%; overflow: hidden;}
 .timeitem_descrition p{ margin-top: 5px; font-size: 12px; letter-spacing: 1px;}
 .time_more{ margin:400px 0 0 -20px;}
 .time_more_link{font-size: 20px; line-height: 20px; color: #626262; font-family: "楷体"; font-weight: bold; text-decoration: none;}
-
+.hotletitle{width: 500px;}
 .container-allmap{
     width:700px;
     height: 700px;
@@ -273,7 +274,7 @@ header h1{
     left: 0;
     background: 1px 31px url(../images/star.png);
     width: 200px;
-    height: 32px;
+    height: 31px;
 }
 .star0{
     width: 0px;
@@ -334,4 +335,15 @@ header h1{
 }
 .r-img img{
     width: 100%;
+}
+.comment{
+    color: #fff;
+    font-size: 20px;
+    line-height: 35px;
+}
+.commentScore{
+    color: #fff;
+    margin-left: 10px;
+    font-size: 20px;
+    line-height: 35px;
 }
