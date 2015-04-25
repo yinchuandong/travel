@@ -1,10 +1,8 @@
 <?php
 class IndexAction extends Action {
+	
 	public function index(){
-// 		$this->redirect('Home/Index/search');
-// 		import('ORG.HttpUtil');
-		
-    	$this->display('Home:Index:index');
+		header("Location:".U('Index/search').'?key=广州&day=3&price=500-1000');
     }
     
 	public function search(){
@@ -13,6 +11,13 @@ class IndexAction extends Action {
     	$day = $this->_get('day');
     	$orderby = $this->_get('orderby');
     	$sort = $this->_get('sort');
+
+    	if($city == ''){
+    		$this->assign('title', '路线搜索');
+    		$this->display('Home:Index:search');
+    		return;
+    	}
+    	
     	if (empty($orderby)) {
     		$orderby = 'hotness';
     	}
