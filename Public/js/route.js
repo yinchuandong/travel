@@ -43,6 +43,7 @@ var Route = {
     //添加景点标注
     mapSceneTpl: ['<div class="clearfix m-unit"><div class="m-detail">',
         '<h3><%= sname %><span class="price">价格：<%= price %></span></h3> ',
+        '<h3><div class="r-love">想去:<i class="love"></i><span class="price"><%= viewCount %></span></div></h3>',
         '<p class="intro"><%= moreDesc %></p>',
         '</div><img id="coverImg" style="float:right;margin:4px"  src="<%= gl_baseUrl %>/index.php/Index/readImg?url=<%= fullUrl %>"/></div>'
     ].join(''),
@@ -51,6 +52,7 @@ var Route = {
     mapHotelTpl: ['<div class="clearfix m-unit"><div class="m-detail">',
         '<h3><%= hotelName %><span class="price"> ￥<%= price %> 元</span></h3> ',
         '<p class="intro"><%= hotelAddress %></p>',
+        '<p class="intro">电话：<%= phone %></p>',
         '</div><img id="coverImg" style="float:right;margin:4px"  src="<%= gl_baseUrl %>/index.php/Index/readImg?url=<%= pic %>"/></div>'
     ].join(''),
 
