@@ -29,5 +29,10 @@
 <script type="text/javascript" src="__JS__/util.js"></script>
 <script type="text/javascript" src="__JS__/map.js"></script>
 <script type="text/javascript" src="__JS__/route.js"></script>
-
+<script type="text/javascript">
+$(document).ready(function () {
+    var url = 'routes/{$routeFile}';
+    Route.init(url, $("#processguide"), $("#items"));
+});
+</script>
 <include file="Public:footer" />
