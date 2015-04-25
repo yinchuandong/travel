@@ -69,6 +69,7 @@ var Search = {
         $("#tips-dialog").on("click","li" ,function(){
             var val = $(this).text();
             $("#search-text").val(val);
+            $("#search-form").submit();
         });
     },
 
