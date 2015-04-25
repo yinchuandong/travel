@@ -196,7 +196,8 @@ header h1{
 .timeitem{margin-top: 20px;margin-left: -20px;}
 .timeline_time{color: #949494; font-size: 12px;}
 .time_icon{ margin-right: 5px;}
-.time_title{ font-size: 20px; line-height: 20px; color: #ffffff; font-family: "楷体"; font-weight: bold;}
+.time_title{width: 80%;margin-top: 5px;
+    float: right; font-size: 20px; line-height: 20px; color: #ffffff; font-family: "楷体"; font-weight: bold;}
 .time_title2{margin-left: 30px;}
 .timeitem_content{margin:10px 0 20px 30px;width: 90%;}
 .timeitem_descrition{float: right; display: inline; color: #fff; border-top: 1px dashed  #626262; border-bottom: 1px dashed  #626262; width: 100%; overflow: hidden;}
