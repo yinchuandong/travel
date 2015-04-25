@@ -48,14 +48,14 @@ class IndexAction extends Action {
     			$routeList[$i]['arrange'] = json_decode($routeList[$i]['arrange'], true);
     		}
     	}else{
-    		import('ORG.HttpUtil');
-    		$url = "http://127.0.0.1:8080/Traveljsp/search.jsp?";
-    		$url .= "key=$city&minPrice=$minPrice&maxPrice=$maxPrice&day=$day&orderby=$orderby&sort=$sort";
-    		$util = new HttpUtil($url);
-    		$resultJson = json_decode($util->getContent(), true);
-    		$routeList = $resultJson['data'];
-//     		var_dump($routeList);
-//     		die;
+    		if($model->where(array("sname"=>$city))->count() == 0){
+    			import('ORG.HttpUtil');
+    			$url = "http://127.0.0.1:8080/Traveljsp/search.jsp?";
+    			$url .= "key=$city&minPrice=$minPrice&maxPrice=$maxPrice&day=$day&orderby=$orderby&sort=$sort";
+    			$util = new HttpUtil($url);
+    			$resultJson = json_decode($util->getContent(), true);
+    			$routeList = $resultJson['data'];
+    		}
     	}
     	
     	$this->assign('routeList', $routeList);
