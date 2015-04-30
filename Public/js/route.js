@@ -18,26 +18,30 @@ var Route = {
             '<% for(var j = 0;j<item[i].list.length;j++){ %>',
                 '<div class="timeitem clearfix" id="day<%= i %><%= j %>">',
                 '<img class="time_icon" src="<%= url %>/Public/images/timeline_side.png" alt=""><span class="time_title"><%= item[i].curDay %>:<%= item[i].list[j].ambiguitySname %></span>',
-                '<div class="timeitem_content timeitemControl">',
-                //'<img src="<%= url %>/Public/images/1.jpg" alt="" class="time_img">',
+                '<div class="timeitem_content timeitemControl scene-item clearfix">',
                 '<img src="<%= url %>/index.php/Index/readImg?url=<%= item[i].list[j].fullUrl %>" alt="" class="time_img">',
-                '<div class="timeitem_descrition">',
+                '<p><div class="star"><i class="star-gold star<%= item[i].list[j].rating*2 %>"></i></div> <span class="commentScore scene-font"><%= item[i].list[j].rating %>分</span> </p>',
+                '<div class="timeitem_descrition scene-font">',
+                '<p>访问量:<%= item[i].list[j].viewCount %> 想去：<%= item[i].list[j].goingCount %>人 去过：<%= item[i].list[j].goneCount %>人</p>',
                 '<p><%= item[i].list[j].moreDesc %></p>',
                 '</div>',
                 '</div>',
                 '</div>',
             '<% } %>',
-            '<div class="timeitem clearfix" id="hotel<%= i %>">',
-            '<img class="time_icon" src="<%= url %>/Public/images/timeline_side.png" alt=""><span class="time_title">酒店：<%= item[i].hotel.hotelName %> </span></p>',
-            '<p><span class="time_title time_title2">价格：<%= item[i].hotel.price %></span>',
-            '<div class="timeitem_content timeitemControl">',
-            '<p><span class="comment">评分：</span><div class="star"><i class="star-gold star<%= item[i].hotel.commentScore*2 %>"></i></div> <span class="commentScore"><%= item[i].hotel.commentScore %></span> </p>',
-            '<img src="<%= url %>/index.php/Index/readImg?url=<%= item[i].hotel.pic %>" alt="" class="time_img">',
-            '<div class="timeitem_descrition">',
-            '<p><%= item[i].hotel.hotelAddress %></p>',
-            '</div>',
-            '</div>',
-            '</div>',
+            '<% if(item[i].hotel != "-1"){ %>',
+                '<div class="timeitem clearfix" id="hotel<%= i %>">',
+                '<img class="time_icon" src="<%= url %>/Public/images/timeline_side.png" alt=""><span class="time_title">酒店：<%= item[i].hotel.hotelName %> </span></span>',
+                '<div class="timeitem_content timeitemControl hotel-item clearfix">',
+                '<img src="<%= url %>/index.php/Index/readImg?url=<%= item[i].hotel.pic %>" alt="" class="time_img">',
+                '<p><div class="star"><i class="star-gold star<%= item[i].hotel.commentScore*2 %>"></i></div> <span class="commentScore hotel-font"><%= item[i].hotel.commentScore %>分</span> </p>',
+                '<div class="timeitem_descrition hotel-font">',
+                '<p>价格：<%= item[i].hotel.price %>元</p>',
+                '<p>电话：<%= item[i].hotel.phone %></p>',
+                '<p>地址：<%= item[i].hotel.hotelAddress %></p>',
+                '</div>',
+                '</div>',
+                '</div>',
+            '<% } %>',
         '<% } %>'
     ].join(''),
     //添加景点标注
@@ -149,11 +153,13 @@ var Route = {
                 oMap.addLabel(pointArr, markLabels, false);
             }
 
-            var pt = new BMap.Point(hotel.lng, hotel.lat);
-            var hotelIcon = new BMap.Icon(this.baseUrl+"/Public/images/hotel-icon.png", new BMap.Size(32,32));
-            var hotelMarker = new BMap.Marker(pt,{icon:hotelIcon});  // 创建标注
-            var hotelTpl = tmpl(this.mapHotelTpl, hotel);
-            oMap.addMarker(hotelMarker, hotelTpl);
+            if(hotel != "-1"){
+                var pt = new BMap.Point(hotel.lng, hotel.lat);
+                var hotelIcon = new BMap.Icon(this.baseUrl+"/Public/images/hotel-icon.png", new BMap.Size(32,32));
+                var hotelMarker = new BMap.Marker(pt,{icon:hotelIcon});  // 创建标注
+                var hotelTpl = tmpl(this.mapHotelTpl, hotel);
+                oMap.addMarker(hotelMarker, hotelTpl);
+            }
         }
 
 

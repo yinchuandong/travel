@@ -348,3 +348,23 @@ header h1{
     font-size: 20px;
     line-height: 35px;
 }
+
+.scene-item{
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: -4px 4px 4px rgba(0,0,0,.3);
+    padding: 10px 5px 10px 5px;
+}
+.scene-font{
+    color: #6eb8d3;
+}
+
+.hotel-item{
+    background-color: #92cade;
+    border-radius: 6px;
+    box-shadow: -4px 4px 4px rgba(0,0,0,.3);
+    padding: 10px 5px 10px 5px;
+}
+.hotel-font{
+    color: #ffffff;
+}
