@@ -8,7 +8,7 @@ var Route = {
     $items: $("#items"),
     plan: '1',
     guideTpl: [
-        '<h3> <%= item.ambiguitySname  %><%= item.maxDay  %>日游  方案<%= plan %></h3>',
+        '<h3> <%= item.ambiguitySname  %><%= item.maxDay  %>日游&nbsp;&nbsp;方案<%= plan %>&nbsp;&nbsp;酒店花费:<%= parseInt(item.hotelPrice) %>元&nbsp;&nbsp;门票花费:<%= item.sceneTicket %>元</h3>',
         '<% for(var i = 0;i<item.arrange.length;i++){ %>',
         '<a href="#" class="current-day" alt="<%= i %>"><%= item.arrange[i].curDay %></a>',
         '<% } %>'
