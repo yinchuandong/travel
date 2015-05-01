@@ -68,8 +68,13 @@ class IndexAction extends Action {
     	if($routeFile == ''){
     		$routeFile = 'guangzhou/3_0_96f564316ba8ffd5edcbf6fdd8fc5d3.json';
     	}
+    	$plan = $this->_get('plan');
+    	if($plan == ''){
+    		$plan = 1;
+    	}
     	$this->assign('title', '路线详情');
     	$this->assign('routeFile', $routeFile);
+    	$this->assign('plan', $plan);
     	$this->display('Home:Index:route');
     }
 

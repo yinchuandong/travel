@@ -6,8 +6,9 @@ var Route = {
     baseUrl: gl_baseUrl,
     $processguide: $("#processguide"),
     $items: $("#items"),
+    plan: '1',
     guideTpl: [
-        '<h3> <%= item.ambiguitySname  %><%= item.maxDay  %>日游  </h3>',
+        '<h3> <%= item.ambiguitySname  %><%= item.maxDay  %>日游  方案<%= plan %></h3>',
         '<% for(var i = 0;i<item.arrange.length;i++){ %>',
         '<a href="#" class="current-day" alt="<%= i %>"><%= item.arrange[i].curDay %></a>',
         '<% } %>'
@@ -17,7 +18,7 @@ var Route = {
         '<% for(var i = 0;i<item.length;i++){ %>',
             '<% for(var j = 0;j<item[i].list.length;j++){ %>',
                 '<div class="timeitem clearfix" id="day<%= i %><%= j %>">',
-                '<img class="time_icon" src="<%= url %>/Public/images/timeline_side.png" alt=""><span class="time_title"><%= item[i].curDay %>:<%= item[i].list[j].ambiguitySname %></span>',
+                '<img class="time_icon" src="<%= url %>/Public/images/timeline_side.png" alt=""><span class="time_title scene-font"><%= item[i].curDay %>:<%= item[i].list[j].ambiguitySname %></span>',
                 '<div class="timeitem_content timeitemControl scene-item clearfix">',
                 '<img src="<%= url %>/index.php/Index/readImg?url=<%= item[i].list[j].fullUrl %>" alt="" class="time_img">',
                 '<p><div class="star"><i class="star-gold star<%= item[i].list[j].rating*2 %>"></i></div> <span class="commentScore scene-font"><%= item[i].list[j].rating %>分</span> </p>',
@@ -30,7 +31,7 @@ var Route = {
             '<% } %>',
             '<% if(item[i].hotel != "-1"){ %>',
                 '<div class="timeitem clearfix" id="hotel<%= i %>">',
-                '<img class="time_icon" src="<%= url %>/Public/images/timeline_side.png" alt=""><span class="time_title">酒店：<%= item[i].hotel.hotelName %> </span></span>',
+                '<img class="time_icon" src="<%= url %>/Public/images/timeline_side.png" alt=""><span class="time_title hotel-font">酒店：<%= item[i].hotel.hotelName %> </span></span>',
                 '<div class="timeitem_content timeitemControl hotel-item clearfix">',
                 '<img src="<%= url %>/index.php/Index/readImg?url=<%= item[i].hotel.pic %>" alt="" class="time_img">',
                 '<p><div class="star"><i class="star-gold star<%= item[i].hotel.commentScore*2 %>"></i></div> <span class="commentScore hotel-font"><%= item[i].hotel.commentScore %>分</span> </p>',
@@ -46,7 +47,7 @@ var Route = {
     ].join(''),
     //添加景点标注
     mapSceneTpl: ['<div class="clearfix m-unit"><div class="m-detail">',
-        '<h3><%= sname %><span class="price">价格：<%= price %></span></h3> ',
+        '<h3><%= sname %><span class="price">&nbsp;&nbsp;<% if(price != 0) { %><%= price %>元 <% } else { %> 免费 <% } %></span></h3> ',
         '<h5><div class="r-love"><i class="love"></i><span class="price"><%= viewCount %></span></div></h5>',
         '<p class="intro"><%= moreDesc %></p>',
         '</div><img id="coverImg" style="float:right;margin:4px"  src="<%= gl_baseUrl %>/index.php/Index/readImg?url=<%= fullUrl %>"/></div>'
@@ -61,8 +62,16 @@ var Route = {
     ].join(''),
 
     routeData: null, //ajax请求的异步数据
-    init: function (url, $processguide, $items) {
+    /**
+     *
+     * @param url
+     * @param $processguide
+     * @param $items
+     * @param plan
+     */
+    init: function (url, $processguide, $items, plan) {
         oMap.init();
+        this.plan = plan;
         this.$processguide = $processguide;
         this.$items = $items;
         this.adjustMapPos();
@@ -166,7 +175,7 @@ var Route = {
     },
 
     renderPage: function (data) {
-        this.$processguide.append(tmpl(this.guideTpl, {item: data}));
+        this.$processguide.append(tmpl(this.guideTpl, {item: data, plan: this.plan}));
         this.$items.append(tmpl(this.routeTpl, {item: data.arrange, url: this.baseUrl}))
     },
     adjustMapPos: function () {

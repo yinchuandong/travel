@@ -32,7 +32,8 @@
 <script type="text/javascript">
 $(document).ready(function () {
     var url = 'routes/{$routeFile}';
-    Route.init(url, $("#processguide"), $("#items"));
+    var plan = '{$plan}';
+    Route.init(url, $("#processguide"), $("#items"), plan);
 });
 </script>
 <include file="Public:footer" />
