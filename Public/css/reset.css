@@ -60,7 +60,7 @@ a{
     font-size: 10px;
 }
 .nav>li{
-    margin-right: 5px;
+    margin-right: 0;
 }
 .nav>li>a {
     position: relative;

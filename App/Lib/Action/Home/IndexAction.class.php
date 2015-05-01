@@ -10,7 +10,7 @@ class IndexAction extends Action {
     	$price = $this->_get('price');
     	$day = $this->_get('day');
     	$orderby = $this->_get('orderby');
-    	$sort = $this->_get('sort');
+    	$sort = $this->_get('sorted');
 
     	if($city == ''){
     		$this->assign('title', '路线搜索');

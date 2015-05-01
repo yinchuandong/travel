@@ -114,7 +114,7 @@ $.fn.lazyload.defaults = {
             event           : "scroll",
             effect_speed    : 1000,
             placeholder     : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"   
-}
+};
 
 var lazy = function(settings,elements){
     this.settings = settings;
@@ -161,7 +161,7 @@ var lazy = function(settings,elements){
     }
 
     
-}
+};
 
 
 

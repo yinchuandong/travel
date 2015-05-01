@@ -76,9 +76,15 @@
 .condition-day span,.condition-price span, .condition-orderby span{
     float: left;
     height: 40px;
+    padding-top: 3px;
 }
 .condition-day ul,.condition-price ul, .condition-orderby ul{
     float: left;
+}
+.price-input{
+    width: 50px;
+    font-size: 12px;
+    margin-top: 3px;
 }
 #condition a ,.sort a,.route,.p-intro{
     /*color: #0d63ed;*/
@@ -94,6 +100,7 @@
     margin: 0 auto;
     /*width: 580px;*/
 }
+
 
 .tips-dialog{
     width: 487px;

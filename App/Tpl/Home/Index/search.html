@@ -8,9 +8,11 @@
 			<form id="search-form" action="{:U('Index/search')}" method="get">
 				<input type="text" id="search-text" name="key" placeholder="示例" autocomplete="off" class="inputText"/>
 				<input type="hidden" id="search-day" name="day" value="3" />
-				<input type="hidden" id="search-price" name="price" value="300-600" />
+				<input type="hidden" id="search-price" name="price" value="500-1000" />
 				<input type="hidden" id="search-orderby" name="orderby" value="hotness">
-                <a href="#" id="search-route" class="my-btn search-btn">搜路线</a>
+				<input type="hidden" id="search-sort" name="sorted" value="desc">
+
+				<a href="#" id="search-route" class="my-btn search-btn">搜路线</a>
 				<ul id="tips-ul" class="tips-dialog">
 				</ul>
 			</form>
@@ -26,9 +28,12 @@
 					<li class="active">
 						<a href="javascript:void(0)" day="-1" class="daya">不限</a>
 					</li>
+					<li><a href="javascript:void(0)" day="2">2天</a></li>
 					<li><a href="javascript:void(0)" day="3">3天</a></li>
 					<li><a href="javascript:void(0)" day="4">4天</a></li>
 					<li><a href="javascript:void(0)" day="5">5天</a></li>
+					<li><a href="javascript:void(0)" day="6">6天</a></li>
+					<li><a href="javascript:void(0)" day="7">7天</a></li>
 				</ul>
 			</div>
 
@@ -38,18 +43,27 @@
 					<li class="active">
 						<a href="javascript:void(0)" price="-1">不限</a>
 					</li>
-					<li><a href="javascript:void(0)" price="0-300">0-300</a></li>
-					<li><a href="javascript:void(0)" price="300-600">300-600</a></li>
-					<li><a href="javascript:void(0)" price="600-900">600-900</a></li>
-					<li><a href="javascript:void(0)" price="900-1200">900-1200</a></li>
+					<li><a href="javascript:void(0)" price="0-500">0-500</a></li>
+					<li><a href="javascript:void(0)" price="500-1000">500-1000</a></li>
+					<li><a href="javascript:void(0)" price="1000-1500">1000-1500</a></li>
+					<li><a href="javascript:void(0)" price="1500-2000">1500-2000</a></li>
+					<li><a href="javascript:void(0)" price="2000-2500">2000-2500</a></li>
+					<li><a href="javascript:void(0)" price="2500-3000">2500-3000</a></li>
 				</ul>
+				<input type="text" id="j-min-price" class="price-input" maxlength="5" />-
+				<input type="text" id="j-max-price" class="price-input" maxlength="5" />
 			</div>
 			<div class='condition-orderby clearfix'>
 				<span>排序： </span>
-				<ul class="nav nav-pills">
+				<ul class="order nav nav-pills">
 					<li class="active"><a href="#" orderby="hotness">热度</a></li>
 					<li><a href="javascript:void(0)" orderby="sumPrice">价格</a></li>
 					<li><a href="javascript:void(0)" orderby="distance">距离</a></li>
+				</ul>
+				<span style="margin-left: 20px">升/降序：</span>
+				<ul class="sort nav nav-pills">
+					<li class="active"><a href="#" sort="desc">从高到低</a></li>
+					<li><a href="javascript:void(0)" sort="asc">从低到高</a></li>
 				</ul>
 			</div>
 		</div>
@@ -74,7 +88,7 @@
 								</p>
 							</volist>
 						</div>
-						<div class="r-img"><img src="{:U('Index/readImg')}?url={$row.arrange.0.list.0.fullUrl}" alt=""></div>
+						<div class="r-img"><img class="route-cover" data-original="{:U('Index/readImg')}?url={$row.arrange.0.list.0.fullUrl}" alt=""></div>
 					</div>
 				</div>
 				</a>
