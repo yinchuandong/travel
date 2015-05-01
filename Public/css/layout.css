@@ -183,16 +183,21 @@ header h1{
     background: rgba(0,0,0,0.8);
 }
 .m-unit{
-    width: 500px;
-    height: 250px;
+    width: 580px;
+    height: 280px;
 }
 .m-detail{
     width: 280px;
     float: left;
 }
 .m-unit img{
+    float: left;
+    width: 250px;
+}
+.m-unit-right{
     float: right;
-    width: 200px;
+    margin-left: 10px;
+    width: 280px;
 }
 
 
@@ -244,12 +249,12 @@ header h1{
 }
 
 .love{
-    margin-top: 5px;
     display: inline-block;
     background: url(../images/love.png) no-repeat;
     background-size: 26px 22px;
     float: left;
-    margin-right: 10px;
+    margin-right: 5px;
+    margin-bottom: 10px;
     height: 22px;
     width: 26px;
 }

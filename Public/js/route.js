@@ -23,7 +23,7 @@ var Route = {
                 '<img src="<%= url %>/index.php/Index/readImg?url=<%= item[i].list[j].fullUrl %>" alt="" class="time_img">',
                 '<p><div class="star"><i class="star-gold star<%= item[i].list[j].rating*2 %>"></i></div> <span class="commentScore scene-font"><%= item[i].list[j].rating %>分</span> </p>',
                 '<div class="timeitem_descrition scene-font">',
-                '<p>访问量:<%= item[i].list[j].viewCount %> 想去：<%= item[i].list[j].goingCount %>人 去过：<%= item[i].list[j].goneCount %>人</p>',
+                '<p>访问量:<%= item[i].list[j].viewCount %>&nbsp;想去:<%= item[i].list[j].goingCount %>人&nbsp;去过：<%= item[i].list[j].goneCount %>人</p>',
                 '<p><%= item[i].list[j].moreDesc %></p>',
                 '</div>',
                 '</div>',
@@ -46,19 +46,34 @@ var Route = {
         '<% } %>'
     ].join(''),
     //添加景点标注
-    mapSceneTpl: ['<div class="clearfix m-unit"><div class="m-detail">',
-        '<h3><%= sname %><span class="price">&nbsp;&nbsp;<% if(price != 0) { %><%= price %>元 <% } else { %> 免费 <% } %></span></h3> ',
-        '<h5><div class="r-love"><i class="love"></i><span class="price"><%= viewCount %></span></div></h5>',
+    mapSceneTpl: [
+        '<div class="clearfix m-unit">',
+        '<div class="m-detail">',
+        '<h3><%= sname %><span class="price">&nbsp;&nbsp;<% if(price != 0) { %><%= price %>元 <% } else { %> 免费 <% } %></span>',
+        '</h3> ',
         '<p class="intro"><%= moreDesc %></p>',
-        '</div><img id="coverImg" style="float:right;margin:4px"  src="<%= gl_baseUrl %>/index.php/Index/readImg?url=<%= fullUrl %>"/></div>'
+        '</div>',
+        '<div class="m-unit-right">',
+        '<p><div class="star"><i class="star-gold star<%= rating*2 %>"></i></div> <span class="commentScore scene-font"><%= rating %>分</span> </p>',
+        '<p class="scene-font">访问量:<%= viewCount %>&nbsp;想去:<%= goingCount %>人&nbsp;去过:<%= goneCount %>人</p>',
+        '<img id="coverImg" src="<%= gl_baseUrl %>/index.php/Index/readImg?url=<%= fullUrl %>"/>',
+        '</div>',
+        '</div>'
     ].join(''),
 
     //添加酒店标注
-    mapHotelTpl: ['<div class="clearfix m-unit"><div class="m-detail">',
+    mapHotelTpl: [
+        '<div class="clearfix m-unit">',
+        '<div class="m-detail">',
         '<h3><%= hotelName %><span class="price"> ￥<%= price %> 元</span></h3> ',
+        '<p><div class="star"><i class="star-gold star<%= commentScore*2 %>"></i></div> <span class="commentScore scene-font"><%= commentScore %>分</span> </p>',
         '<p class="intro"><%= hotelAddress %></p>',
         '<p class="intro">电话：<%= phone %></p>',
-        '</div><img id="coverImg" style="float:right;margin:4px"  src="<%= gl_baseUrl %>/index.php/Index/readImg?url=<%= pic %>"/></div>'
+        '</div>',
+        '<div class="m-unit-right">',
+        '<img id="coverImg" src="<%= gl_baseUrl %>/index.php/Index/readImg?url=<%= pic %>"/>',
+        '</div>',
+        '</div>'
     ].join(''),
 
     routeData: null, //ajax请求的异步数据
@@ -145,7 +160,6 @@ var Route = {
                 var div = tmpl(this.mapSceneTpl, sceneList[j]);
                 pointArr.push(point);
                 markLabels.push(div);
-
             }
 
             //重新赋值上一天的结束点
