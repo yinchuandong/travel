@@ -65,7 +65,7 @@ var Route = {
     mapHotelTpl: [
         '<div class="clearfix m-unit">',
         '<div class="m-detail">',
-        '<h3><%= hotelName %><span class="price"> ￥<%= price %> 元</span></h3> ',
+        '<h3><%= hotelName %><span class="price"> ￥<%= price %></span></h3> ',
         '<p><div class="star"><i class="star-gold star<%= commentScore*2 %>"></i></div> <span class="commentScore scene-font"><%= commentScore %>分</span> </p>',
         '<p class="intro"><%= hotelAddress %></p>',
         '<p class="intro">电话：<%= phone %></p>',

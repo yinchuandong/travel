@@ -1,5 +1,6 @@
 traveldata/*
 traveldata*
+routes
 App/Runtime/*
 App/Runtime/.*
 .idea
